@@ -19,7 +19,7 @@ class GAUtilities {
         controller.present(alertController, animated: true, completion: nil)
     }
     
-    class func showOverlay(view: UIView) -> UIView {
+    class func showOverlay(_ view: UIView) -> UIView {
         let overlay = UIView(frame: view.frame)
         overlay.center = view.center
         overlay.alpha = 0
