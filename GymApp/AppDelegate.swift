@@ -8,61 +8,51 @@
 
 import UIKit
 import Firebase
-import GoogleSignIn
+import FirebaseAuthUI
+import FirebaseGoogleAuthUI
+//import FirebaseFacebookAuthUI
+//import FirebaseTwitterAuthUI
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
+        
         FIRApp.configure()
         
-        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
+        let authUI = FUIAuth.defaultAuthUI()
+        authUI?.delegate = GAUtilities.vcWithName(name: "LoginVC") as! FUIAuthDelegate?
         
-        //GMSServices.provideAPIKey("AIzaSyANWMeqlz41cyR6ju-BGDKfDOL0bjNb7zY")
+        let providers: [FUIAuthProvider] = [
+            FUIGoogleAuth(),
+            //FUIFacebookAuth(),
+            //FUITwitterAuth(),
+            ]
+        authUI?.providers = providers
         
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url,
-                                                 sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-                                                 annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+    @available(iOS 9.0, *)
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
+        return self.handleOpenUrl(url, sourceApplication: sourceApplication)
     }
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        let rootViewController = self.window!.rootViewController as! UINavigationController
-        let view = rootViewController.visibleViewController?.view
-        let overlay = GAUtilities.showOverlay(view!)
-        
-        
-        let authentication = user.authentication
-        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
-                                                          accessToken: (authentication?.accessToken)!)
-        
-        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-            GAUtilities.removeOverlay(overlay: overlay)
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            
-            UserDefaults.standard.set((user?.uid)!, forKey: "user_id")
-            
-            let rootViewController = self.window!.rootViewController as! UINavigationController
-            rootViewController.visibleViewController?.performSegue(withIdentifier: "login", sender: nil)
-        }
+    @available(iOS 8.0, *)
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return self.handleOpenUrl(url, sourceApplication: sourceApplication)
     }
     
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        
+    
+    func handleOpenUrl(_ url: URL, sourceApplication: String?) -> Bool {
+        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
+            return true
+        }
+        // other URL handling goes here.
+        return false
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -8,77 +8,27 @@
 
 import UIKit
 import Firebase
-import GoogleSignIn
+import FirebaseAuthUI
 
-class LoginVC: UIViewController, GIDSignInUIDelegate {
-
-    var overlay: UIView!
+class LoginVC: UIViewController, FUIAuthDelegate {
     
-    @IBOutlet weak var emailOutlet: UITextField!
-    @IBOutlet weak var passwordOutlet: UITextField!
+    //fileprivate(set) var authUI: FUIAuth? = FUIAuth.defaultAuthUI()
+    
     override func viewDidLoad() {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
         super.viewDidLoad()
-        GIDSignIn.sharedInstance().uiDelegate = self
+        checkLogin();
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    func storeCurrentUserId(user_id : String){
-        UserDefaults.standard.set(user_id, forKey: "user_id")
+    func authUI(_ authUI: FUIAuth, didSignInWith user: FIRUser?, error: Error?) {
+        // handle user and error as necessary
     }
     
-    @IBAction func createAccountAction(_ sender: AnyObject)
-    {
-        self.overlay = GAUtilities.showOverlay(view: self.view)
-        if self.emailOutlet.text == "" || self.passwordOutlet.text == ""
-        {
-            GAUtilities.removeOverlay(overlay: self.overlay)
-            GAUtilities.showMessagePrompt("Please enter an email and password.", controller: self)
-        }
-        else
-        {
-            FIRAuth.auth()?.createUser(withEmail: self.emailOutlet.text!, password: self.passwordOutlet.text!) { (user, error) in
-                
-                if error == nil {
-                    self.storeCurrentUserId(user_id: (user?.uid)!)
-                    self.performSegue(withIdentifier: "createProfileSegue", sender: nil)
-                }
-                else
-                {
-                    GAUtilities.removeOverlay(overlay: self.overlay)
-                    GAUtilities.showMessagePrompt(error!.localizedDescription, controller: self)
-                }
-            }
-        }
+    func checkLogin() {
+        let controller = FUIAuth.defaultAuthUI()?.authViewController()
+        self.present(controller!, animated: true, completion: nil)
     }
-    
-    @IBAction func loginAction(_ sender: AnyObject)
-    {
-        self.overlay = GAUtilities.showOverlay(view: self.view)
-        if self.emailOutlet.text == "" || self.passwordOutlet.text == ""
-        {
-            GAUtilities.removeOverlay(overlay: self.overlay)
-            GAUtilities.showMessagePrompt("Please enter an email and password.", controller: self)
-        }
-        else
-        {
-            FIRAuth.auth()?.signIn(withEmail: self.emailOutlet.text!, password: self.passwordOutlet.text!) { (user, error) in
-                
-                if error == nil {
-                    self.storeCurrentUserId(user_id: (user?.uid)!)
-                    self.performSegue(withIdentifier: "login", sender: nil)
-                }
-                else
-                {
-                    GAUtilities.removeOverlay(overlay: self.overlay)
-                    GAUtilities.showMessagePrompt(error!.localizedDescription, controller: self)
-                }
-            }
-        }
-    }
-
 }

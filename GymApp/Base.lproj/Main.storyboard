@@ -1,108 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zNN-vI-IiA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QLU-6l-lVl">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="xVn-tP-0dI">
-            <objects>
-                <navigationController id="zNN-vI-IiA" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Osl-NI-nwD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="tuv-cx-jcM" kind="relationship" relationship="rootViewController" id="pX5-2k-tOK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sT1-I4-KFz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2239" y="-46"/>
-        </scene>
-        <!--LoginVC-->
-        <scene sceneID="fX3-Tp-WXZ">
-            <objects>
-                <viewController id="tuv-cx-jcM" customClass="LoginVC" customModule="GymApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="iqt-ol-dgo"/>
-                        <viewControllerLayoutGuide type="bottom" id="U6l-GG-DrH"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oTG-S8-cjW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NO9-zl-POA">
-                                <rect key="frame" x="16" y="408" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Qp-va-N8g">
-                                <rect key="frame" x="16" y="446" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abY-K6-XaH">
-                                <rect key="frame" x="16" y="484" width="166" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Login"/>
-                                <connections>
-                                    <action selector="loginAction:" destination="tuv-cx-jcM" eventType="touchUpInside" id="4tP-r4-s5J"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gmj-4z-QAe">
-                                <rect key="frame" x="190" y="484" width="169" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Sign-Up"/>
-                                <connections>
-                                    <action selector="createAccountAction:" destination="tuv-cx-jcM" eventType="touchUpInside" id="k6v-uj-uOL"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OKJ-c7-juo" customClass="GIDSignInButton">
-                                <rect key="frame" x="103" y="522" width="169" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gym App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqc-7W-bpR">
-                                <rect key="frame" x="16" y="187" width="343" height="73"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="2Qp-va-N8g" firstAttribute="top" secondItem="NO9-zl-POA" secondAttribute="bottom" constant="8" symbolic="YES" id="Idw-xj-nto"/>
-                            <constraint firstItem="U6l-GG-DrH" firstAttribute="top" secondItem="2Qp-va-N8g" secondAttribute="bottom" constant="191" id="VEI-I7-l5F"/>
-                            <constraint firstItem="NO9-zl-POA" firstAttribute="trailing" secondItem="2Qp-va-N8g" secondAttribute="trailing" id="h7A-B2-sEj"/>
-                            <constraint firstItem="NO9-zl-POA" firstAttribute="trailing" secondItem="oTG-S8-cjW" secondAttribute="trailingMargin" id="u0k-Wl-xQV"/>
-                            <constraint firstItem="NO9-zl-POA" firstAttribute="leading" secondItem="oTG-S8-cjW" secondAttribute="leadingMargin" id="vi9-NI-uDS"/>
-                            <constraint firstItem="NO9-zl-POA" firstAttribute="leading" secondItem="2Qp-va-N8g" secondAttribute="leading" id="wX4-lc-ft5"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="M7V-yr-43x"/>
-                    <connections>
-                        <outlet property="emailOutlet" destination="NO9-zl-POA" id="Wa4-Yh-4ht"/>
-                        <outlet property="passwordOutlet" destination="2Qp-va-N8g" id="0uB-cs-GSr"/>
-                        <segue destination="F1B-oT-rZg" kind="presentation" identifier="login" id="5bS-YD-zGo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ddC-yO-7lw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1447" y="-46"/>
-        </scene>
-        <!--Item 2-->
+        <!--Current Workout-->
         <scene sceneID="XHE-Se-b7k">
             <objects>
                 <viewController id="Xzq-Ty-UOI" customClass="CreateWorkoutVC" customModule="GymApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -122,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G7D-iq-A0J" id="kXA-Bn-rhM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2n-GF-Ri8">
@@ -161,11 +68,30 @@
                             <constraint firstItem="s9p-kN-oKl" firstAttribute="leading" secondItem="Mbk-NL-zCc" secondAttribute="leading" id="tF5-Yh-Kgg"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" image="second" id="7rV-1r-nW2"/>
+                    <tabBarItem key="tabBarItem" title="Current Workout" image="second" id="7rV-1r-nW2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IsY-tT-9ri" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="293.60000000000002" y="273.91304347826087"/>
+            <point key="canvasLocation" x="-626" y="824"/>
+        </scene>
+        <!--Past Workouts-->
+        <scene sceneID="VSG-cn-bbw">
+            <objects>
+                <viewController id="ZFV-iT-82F" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dvx-Ho-cnn"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fl4-OM-eaZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JOZ-GB-q8I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Past Workouts" selectedImage="google.png" id="8CM-Ds-GPP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r8s-KH-ktI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="178" y="824"/>
         </scene>
         <!--Edit ExerciseVC-->
         <scene sceneID="QYb-h8-jd5">
@@ -183,9 +109,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yVd-oF-4c4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1145" y="274"/>
+            <point key="canvasLocation" x="-626" y="1587"/>
         </scene>
-        <!--Item 1-->
+        <!--Statistics-->
         <scene sceneID="lYX-RO-su6">
             <objects>
                 <viewController id="wLE-6Q-kSz" customClass="HomeVC" customModule="GymApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -198,11 +124,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" image="first" id="09C-AA-1of"/>
+                    <tabBarItem key="tabBarItem" title="Statistics" image="first" id="09C-AA-1of"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cca-IU-R8t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="294" y="-446"/>
+            <point key="canvasLocation" x="-1447" y="824"/>
+        </scene>
+        <!--LoginVC-->
+        <scene sceneID="AdS-PR-7Uc">
+            <objects>
+                <viewController storyboardIdentifier="LoginVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MOn-jJ-W0c" customClass="LoginVC" customModule="GymApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PNo-Oo-yVQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="PsW-aP-BA3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JSq-tC-q99">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zja-d3-0Dc"/>
+                    <connections>
+                        <segue destination="F1B-oT-rZg" kind="presentation" id="3kz-6V-cuO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QhT-52-T9k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-627" y="-886"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Z87-3Y-6ya">
+            <objects>
+                <navigationController id="QLU-6l-lVl" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FjF-v4-PEI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="MOn-jJ-W0c" kind="relationship" relationship="rootViewController" id="NaB-Au-erR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f96-Ve-dPG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1447" y="-887"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DNQ-Nt-koj">
@@ -216,6 +180,7 @@
                     <connections>
                         <segue destination="wLE-6Q-kSz" kind="relationship" relationship="viewControllers" id="TOr-Lq-kij"/>
                         <segue destination="Xzq-Ty-UOI" kind="relationship" relationship="viewControllers" id="lto-eN-5zY"/>
+                        <segue destination="ZFV-iT-82F" kind="relationship" relationship="viewControllers" id="hdc-Jy-ikK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x7b-ms-sXJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -225,6 +190,7 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
+        <image name="google.png" width="18" height="18"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>

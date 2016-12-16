@@ -20,6 +20,7 @@
 		2270333A1DE02755005BB93C /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227033391DE02755005BB93C /* HomeVC.swift */; };
 		2270333C1DE028A9005BB93C /* CreateWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270333B1DE028A9005BB93C /* CreateWorkoutVC.swift */; };
 		227033401DE029AC005BB93C /* EditExerciseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270333F1DE029AC005BB93C /* EditExerciseVC.swift */; };
+		22D04A8A1E0356A0006F0AA2 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D04A891E0356A0006F0AA2 /* UIStoryboardExtension.swift */; };
 		22EF025A1DE40D9800639A3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22EF02591DE40D9800639A3F /* GoogleService-Info.plist */; };
 		30E61A8CA7F30CE7D14E3714 /* Pods_GymAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F600C4E691668278D19BE28 /* Pods_GymAppUITests.framework */; };
 		CD253FF5B841D0337B63FE03 /* Pods_GymApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90ED881012E2ABDAFC663CE /* Pods_GymApp.framework */; };
@@ -65,6 +66,7 @@
 		227033391DE02755005BB93C /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		2270333B1DE028A9005BB93C /* CreateWorkoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateWorkoutVC.swift; sourceTree = "<group>"; };
 		2270333F1DE029AC005BB93C /* EditExerciseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExerciseVC.swift; sourceTree = "<group>"; };
+		22D04A891E0356A0006F0AA2 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
 		22EF02591DE40D9800639A3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		636F3C5B50D2CC35137B9A9E /* Pods-GymAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GymAppTests/Pods-GymAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F600C4E691668278D19BE28 /* Pods_GymAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +147,7 @@
 				227033111DE02010005BB93C /* LaunchScreen.storyboard */,
 				227033141DE02010005BB93C /* Info.plist */,
 				22EF02591DE40D9800639A3F /* GoogleService-Info.plist */,
+				22D04A891E0356A0006F0AA2 /* UIStoryboardExtension.swift */,
 			);
 			path = GymApp;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				227033401DE029AC005BB93C /* EditExerciseVC.swift in Sources */,
 				221BEB081DE435D2008E68B4 /* LoginVC.swift in Sources */,
 				2270333C1DE028A9005BB93C /* CreateWorkoutVC.swift in Sources */,
+				22D04A8A1E0356A0006F0AA2 /* UIStoryboardExtension.swift in Sources */,
 				227033071DE02010005BB93C /* AppDelegate.swift in Sources */,
 				221BEB0B1DE43776008E68B4 /* GAUtilities.swift in Sources */,
 				226B764B1DE419DF007E9BD0 /* Workout.swift in Sources */,
@@ -572,6 +576,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -622,6 +627,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
