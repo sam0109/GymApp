@@ -9,9 +9,6 @@
 import UIKit
 import Firebase
 import FirebaseAuthUI
-import FirebaseGoogleAuthUI
-//import FirebaseFacebookAuthUI
-//import FirebaseTwitterAuthUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,16 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FIRApp.configure()
-        
-        let authUI = FUIAuth.defaultAuthUI()
-        authUI?.delegate = GAUtilities.vcWithName(name: "LoginVC") as! FUIAuthDelegate?
-        
-        let providers: [FUIAuthProvider] = [
-            FUIGoogleAuth(),
-            //FUIFacebookAuth(),
-            //FUITwitterAuth(),
-            ]
-        authUI?.providers = providers
         
         return true
     }

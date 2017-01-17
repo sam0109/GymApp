@@ -9,6 +9,8 @@
 import UIKit
 
 class EditExerciseVC: UIViewController {
+    var exercise : Exercise?
+    var workout : Workout?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,14 @@ class EditExerciseVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func backAction(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
+    @IBAction func doneAction(_ sender: Any) {
+        performSegue(withIdentifier: "done_editing", sender: self)
     }
     
 

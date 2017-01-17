@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		221BEB021DE428C1008E68B4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221BEB011DE428C1008E68B4 /* User.swift */; };
 		221BEB081DE435D2008E68B4 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221BEB071DE435D2008E68B4 /* LoginVC.swift */; };
 		221BEB0B1DE43776008E68B4 /* GAUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221BEB0A1DE43776008E68B4 /* GAUtilities.swift */; };
+		22484B1A1E27149D005278C6 /* AddExerciseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22484B191E27149D005278C6 /* AddExerciseVC.swift */; };
+		22484B1C1E274CC3005278C6 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22484B1B1E274CC3005278C6 /* Exercise.swift */; };
 		226B764B1DE419DF007E9BD0 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B764A1DE419DF007E9BD0 /* Workout.swift */; };
 		227033071DE02010005BB93C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227033061DE02010005BB93C /* AppDelegate.swift */; };
 		2270330E1DE02010005BB93C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2270330C1DE02010005BB93C /* Main.storyboard */; };
 		227033101DE02010005BB93C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2270330F1DE02010005BB93C /* Assets.xcassets */; };
-		227033131DE02010005BB93C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227033111DE02010005BB93C /* LaunchScreen.storyboard */; };
 		2270331E1DE02010005BB93C /* GymAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270331D1DE02010005BB93C /* GymAppTests.swift */; };
 		227033291DE02010005BB93C /* GymAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227033281DE02010005BB93C /* GymAppUITests.swift */; };
 		2270333A1DE02755005BB93C /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227033391DE02755005BB93C /* HomeVC.swift */; };
-		2270333C1DE028A9005BB93C /* CreateWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270333B1DE028A9005BB93C /* CreateWorkoutVC.swift */; };
+		2270333C1DE028A9005BB93C /* EditWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270333B1DE028A9005BB93C /* EditWorkoutVC.swift */; };
 		227033401DE029AC005BB93C /* EditExerciseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270333F1DE029AC005BB93C /* EditExerciseVC.swift */; };
 		22D04A8A1E0356A0006F0AA2 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D04A891E0356A0006F0AA2 /* UIStoryboardExtension.swift */; };
 		22EF025A1DE40D9800639A3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22EF02591DE40D9800639A3F /* GoogleService-Info.plist */; };
@@ -47,15 +47,15 @@
 /* Begin PBXFileReference section */
 		1BBE471CD02F8602EED814CF /* Pods-GymApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-GymApp/Pods-GymApp.release.xcconfig"; sourceTree = "<group>"; };
 		20C957D6D248F431738E9898 /* Pods-GymApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GymApp/Pods-GymApp.debug.xcconfig"; sourceTree = "<group>"; };
-		221BEB011DE428C1008E68B4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		221BEB071DE435D2008E68B4 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		221BEB0A1DE43776008E68B4 /* GAUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAUtilities.swift; sourceTree = "<group>"; };
+		22484B191E27149D005278C6 /* AddExerciseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExerciseVC.swift; sourceTree = "<group>"; };
+		22484B1B1E274CC3005278C6 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		226B764A1DE419DF007E9BD0 /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		227033031DE02010005BB93C /* GymApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		227033061DE02010005BB93C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2270330D1DE02010005BB93C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2270330F1DE02010005BB93C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		227033121DE02010005BB93C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		227033141DE02010005BB93C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		227033191DE02010005BB93C /* GymAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2270331D1DE02010005BB93C /* GymAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymAppTests.swift; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		227033281DE02010005BB93C /* GymAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymAppUITests.swift; sourceTree = "<group>"; };
 		2270332A1DE02010005BB93C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		227033391DE02755005BB93C /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
-		2270333B1DE028A9005BB93C /* CreateWorkoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateWorkoutVC.swift; sourceTree = "<group>"; };
+		2270333B1DE028A9005BB93C /* EditWorkoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditWorkoutVC.swift; sourceTree = "<group>"; };
 		2270333F1DE029AC005BB93C /* EditExerciseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExerciseVC.swift; sourceTree = "<group>"; };
 		22D04A891E0356A0006F0AA2 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
 		22EF02591DE40D9800639A3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -144,7 +144,6 @@
 				227033061DE02010005BB93C /* AppDelegate.swift */,
 				2270330C1DE02010005BB93C /* Main.storyboard */,
 				2270330F1DE02010005BB93C /* Assets.xcassets */,
-				227033111DE02010005BB93C /* LaunchScreen.storyboard */,
 				227033141DE02010005BB93C /* Info.plist */,
 				22EF02591DE40D9800639A3F /* GoogleService-Info.plist */,
 				22D04A891E0356A0006F0AA2 /* UIStoryboardExtension.swift */,
@@ -174,9 +173,10 @@
 			isa = PBXGroup;
 			children = (
 				227033391DE02755005BB93C /* HomeVC.swift */,
-				2270333B1DE028A9005BB93C /* CreateWorkoutVC.swift */,
+				2270333B1DE028A9005BB93C /* EditWorkoutVC.swift */,
 				2270333F1DE029AC005BB93C /* EditExerciseVC.swift */,
 				221BEB071DE435D2008E68B4 /* LoginVC.swift */,
+				22484B191E27149D005278C6 /* AddExerciseVC.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -185,7 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				226B764A1DE419DF007E9BD0 /* Workout.swift */,
-				221BEB011DE428C1008E68B4 /* User.swift */,
+				22484B1B1E274CC3005278C6 /* Exercise.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -329,7 +329,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				227033131DE02010005BB93C /* LaunchScreen.storyboard in Resources */,
 				22EF025A1DE40D9800639A3F /* GoogleService-Info.plist in Resources */,
 				227033101DE02010005BB93C /* Assets.xcassets in Resources */,
 				2270330E1DE02010005BB93C /* Main.storyboard in Resources */,
@@ -498,12 +497,13 @@
 				2270333A1DE02755005BB93C /* HomeVC.swift in Sources */,
 				227033401DE029AC005BB93C /* EditExerciseVC.swift in Sources */,
 				221BEB081DE435D2008E68B4 /* LoginVC.swift in Sources */,
-				2270333C1DE028A9005BB93C /* CreateWorkoutVC.swift in Sources */,
+				2270333C1DE028A9005BB93C /* EditWorkoutVC.swift in Sources */,
 				22D04A8A1E0356A0006F0AA2 /* UIStoryboardExtension.swift in Sources */,
+				22484B1C1E274CC3005278C6 /* Exercise.swift in Sources */,
 				227033071DE02010005BB93C /* AppDelegate.swift in Sources */,
 				221BEB0B1DE43776008E68B4 /* GAUtilities.swift in Sources */,
 				226B764B1DE419DF007E9BD0 /* Workout.swift in Sources */,
-				221BEB021DE428C1008E68B4 /* User.swift in Sources */,
+				22484B1A1E27149D005278C6 /* AddExerciseVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,14 +545,6 @@
 				2270330D1DE02010005BB93C /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		227033111DE02010005BB93C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				227033121DE02010005BB93C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

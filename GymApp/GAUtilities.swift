@@ -97,7 +97,7 @@ class GAUtilities {
             return nil
         }
     }
-    //Obtain view controller by name from main storyboard
+    //instantiate view controller by name from main storyboard
     class func vcWithName(name: String) -> UIViewController?
     {
         let storyboard = mainStoryboard()
