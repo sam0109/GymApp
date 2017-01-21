@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		221BEB081DE435D2008E68B4 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221BEB071DE435D2008E68B4 /* LoginVC.swift */; };
 		221BEB0B1DE43776008E68B4 /* GAUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221BEB0A1DE43776008E68B4 /* GAUtilities.swift */; };
+		223E5C2E1E31907100D76FFC /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223E5C2D1E31907100D76FFC /* ExerciseCell.swift */; };
 		22484B1A1E27149D005278C6 /* AddExerciseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22484B191E27149D005278C6 /* AddExerciseVC.swift */; };
 		22484B1C1E274CC3005278C6 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22484B1B1E274CC3005278C6 /* Exercise.swift */; };
 		226B764B1DE419DF007E9BD0 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B764A1DE419DF007E9BD0 /* Workout.swift */; };
@@ -49,6 +50,7 @@
 		20C957D6D248F431738E9898 /* Pods-GymApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GymApp/Pods-GymApp.debug.xcconfig"; sourceTree = "<group>"; };
 		221BEB071DE435D2008E68B4 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		221BEB0A1DE43776008E68B4 /* GAUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAUtilities.swift; sourceTree = "<group>"; };
+		223E5C2D1E31907100D76FFC /* ExerciseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
 		22484B191E27149D005278C6 /* AddExerciseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExerciseVC.swift; sourceTree = "<group>"; };
 		22484B1B1E274CC3005278C6 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		226B764A1DE419DF007E9BD0 /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
@@ -172,11 +174,12 @@
 		227033361DE026FB005BB93C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				221BEB071DE435D2008E68B4 /* LoginVC.swift */,
 				227033391DE02755005BB93C /* HomeVC.swift */,
 				2270333B1DE028A9005BB93C /* EditWorkoutVC.swift */,
-				2270333F1DE029AC005BB93C /* EditExerciseVC.swift */,
-				221BEB071DE435D2008E68B4 /* LoginVC.swift */,
 				22484B191E27149D005278C6 /* AddExerciseVC.swift */,
+				2270333F1DE029AC005BB93C /* EditExerciseVC.swift */,
+				223E5C2D1E31907100D76FFC /* ExerciseCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				22484B1C1E274CC3005278C6 /* Exercise.swift in Sources */,
 				227033071DE02010005BB93C /* AppDelegate.swift in Sources */,
 				221BEB0B1DE43776008E68B4 /* GAUtilities.swift in Sources */,
+				223E5C2E1E31907100D76FFC /* ExerciseCell.swift in Sources */,
 				226B764B1DE419DF007E9BD0 /* Workout.swift in Sources */,
 				22484B1A1E27149D005278C6 /* AddExerciseVC.swift in Sources */,
 			);

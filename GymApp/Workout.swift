@@ -12,8 +12,8 @@ import FirebaseDatabase
 
 class Workout {
     
-    private static let workoutsRef: FIRDatabaseReference! = FIRDatabase.database().reference().child("Workouts")
-    private static let exercisesRef: FIRDatabaseReference! = FIRDatabase.database().reference().child("Exercises")
+    static let workoutsRef: FIRDatabaseReference! = FIRDatabase.database().reference().child("Workouts")
+    static let exercisesRef: FIRDatabaseReference! = FIRDatabase.database().reference().child("Exercises")
     private static let usersRef: FIRDatabaseReference! = FIRDatabase.database().reference().child("Users")
     private var ref: FIRDatabaseReference?
     
@@ -47,25 +47,36 @@ class Workout {
         self.ref?.child("Exercises").observe(FIRDataEventType.value, with: { (snapshot) in
             let dict = snapshot.value as? [String : AnyObject] ?? [:]
             var exerciseList : [Exercise] = []
-            for (_, value) in dict
+            print(dict)
+            for (key, value) in dict
             {
-                print(value)
-                exerciseList.append(Exercise(value as! [String : AnyObject]))
+                let ref = self.ref?.child("Exercises").child(key)
+                exerciseList.append(Exercise(ref: ref!, dataDict: value as! [String : AnyObject]))
             }
-            exerciseList.sort(by: { $0.timestamp > $1.timestamp })
+            exerciseList.sort(by: { $0.timestamp < $1.timestamp })
             completion(exerciseList)
         }) { (error) in
             print(error.localizedDescription)
         }
     }
     
-    func AddExercise(_ exercise : Exercise, completion: @escaping (() -> ()) = {}) {
-        Workout.exercisesRef.child(exercise.name).observeSingleEvent(of: .value, with: { (snapshot) in
-            let newExercise = self.ref?.child("Exercises").childByAutoId()
-            newExercise?.setValue(snapshot.value as? NSDictionary)
-            completion()
+    func AddExercise(_ exercise : String, completion: @escaping ((Exercise) -> ()) = {_ in }) {
+        Workout.exercisesRef.child(exercise).observeSingleEvent(of: .value, with: { (snapshot) in
+            let newExerciseRef = self.ref?.child("Exercises").childByAutoId()
+            completion(Exercise(ref: newExerciseRef!, dataDict: snapshot.value as! [String : AnyObject]))
         }) { (error) in
             print(error.localizedDescription)
         }
+    }
+    
+    func AddExercise(_ exercise : Exercise) -> FIRDatabaseReference {
+        return (self.ref?.child("Exercises").childByAutoId())!
+    }
+    
+    func saveAndReplaceWorkout(userID : String, completion : @escaping ((Workout) -> ())) -> Workout
+    {
+        Workout.usersRef.child(userID).child("Workouts").childByAutoId().setValue(self.ref?.key)
+        Workout.usersRef.child(userID).child("CurrentWorkout").removeValue()
+        return Workout.init(userID: userID, completion: completion)
     }
 }

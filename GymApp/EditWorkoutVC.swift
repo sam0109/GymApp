@@ -27,11 +27,21 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
         }
         // Do any additional setup after loading the view.
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func doneEditingWorkout(_ sender: Any) {
+        self.workout = workout?.saveAndReplaceWorkout(userID: (FIRAuth.auth()?.currentUser?.uid)!){workout in
+            workout.RegisterCallback(){exercises in
+                self.items = exercises
+                self.exercisesTable.reloadData()
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,7 +76,6 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             dest.workout = self.workout
         }
         else if let dest = segue.destination as? EditExerciseVC {
-            dest.workout = self.workout
             dest.exercise = self.selectedExercise!
         }
     }

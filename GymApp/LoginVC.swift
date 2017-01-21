@@ -44,7 +44,6 @@ class LoginVC: UIViewController, FUIAuthDelegate {
     
     //called after login completed
     func authUI(_ authUI: FUIAuth, didSignInWith user: FIRUser?, error: Error?) {
-        print("test: tada!")
         if let error = error {
             print("Error logging in: ")
             print(error)
