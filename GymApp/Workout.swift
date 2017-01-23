@@ -33,8 +33,9 @@ class Workout {
             let value = snapshot.value as? NSDictionary
             if value?["CurrentWorkout"] == nil{
                 self.ref = Workout.workoutsRef.childByAutoId()
-                self.ref?.updateChildValues(["CreatedDate" : NSDate.timeIntervalSinceReferenceDate])
+                self.ref?.updateChildValues(["Date" : NSDate.timeIntervalSinceReferenceDate])
                 Workout.usersRef.child(userID).updateChildValues(["CurrentWorkout" : self.ref?.key as Any])
+                Workout.usersRef.child(userID).child("Workouts").child((self.ref?.key)!).updateChildValues(["Date": NSDate.timeIntervalSinceReferenceDate])
             }
             else{
                 self.ref = Workout.workoutsRef.child(value?["CurrentWorkout"] as! String)
@@ -75,8 +76,19 @@ class Workout {
     
     func saveAndReplaceWorkout(userID : String, completion : @escaping ((Workout) -> ())) -> Workout
     {
-        Workout.usersRef.child(userID).child("Workouts").childByAutoId().setValue(self.ref?.key)
         Workout.usersRef.child(userID).child("CurrentWorkout").removeValue()
-        return Workout.init(userID: userID, completion: completion)
+        return Workout(userID: userID, completion: completion)
+    }
+    
+    class func getWorkoutsForUser(_ userID : String, completion : @escaping ([(Double, String)]) -> ()){
+        Workout.usersRef.child(userID).child("Workouts").observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
+            let dict = snapshot.value as? [String : AnyObject] ?? [:]
+            var result : [(Double, String)] = []
+            for (key, value) in dict{
+                result.append(value["Date"] as! Double, key)
+            }
+            result.sort(by: {$0.0 > $1.0})
+            completion(result)
+        })
     }
 }

@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G7D-iq-A0J" id="kXA-Bn-rhM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2n-GF-Ri8">
@@ -108,7 +108,7 @@
         <!--Past Workouts-->
         <scene sceneID="VSG-cn-bbw">
             <objects>
-                <viewController id="ZFV-iT-82F" sceneMemberID="viewController">
+                <viewController id="ZFV-iT-82F" customClass="PastWorkoutsVC" customModule="GymApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dvx-Ho-cnn"/>
                         <viewControllerLayoutGuide type="bottom" id="Fl4-OM-eaZ"/>
@@ -117,15 +117,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="64o-77-bb7">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="64o-77-bb7">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ZFV-iT-82F" id="5vu-WC-wKN"/>
+                                    <outlet property="delegate" destination="ZFV-iT-82F" id="6Bg-V7-3aH"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="64o-77-bb7" secondAttribute="trailing" id="GHQ-aj-7Wt"/>
+                            <constraint firstItem="64o-77-bb7" firstAttribute="bottom" secondItem="Fl4-OM-eaZ" secondAttribute="top" id="Sst-mX-ccq"/>
+                            <constraint firstItem="64o-77-bb7" firstAttribute="leading" secondItem="JOZ-GB-q8I" secondAttribute="leading" id="T64-XX-NFI"/>
+                            <constraint firstItem="64o-77-bb7" firstAttribute="top" secondItem="Dvx-Ho-cnn" secondAttribute="bottom" id="g6w-sq-RP7"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Past Workouts" selectedImage="first" id="8CM-Ds-GPP"/>
+                    <connections>
+                        <outlet property="workoutsTable" destination="64o-77-bb7" id="G7S-la-U9J"/>
+                        <segue destination="Xzq-Ty-UOI" kind="show" identifier="show_workout" id="LGr-zA-Ask"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r8s-KH-ktI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -171,7 +184,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyF-rr-rjx" id="avP-ZQ-4ZR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDP-im-hrf">
@@ -340,7 +353,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="DNQ-Nt-koj">
             <objects>
-                <tabBarController id="F1B-oT-rZg" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="F1B-oT-rZg" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="PYA-Ho-7ZX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

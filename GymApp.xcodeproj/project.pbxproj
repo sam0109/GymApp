@@ -21,6 +21,7 @@
 		2270333A1DE02755005BB93C /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227033391DE02755005BB93C /* HomeVC.swift */; };
 		2270333C1DE028A9005BB93C /* EditWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270333B1DE028A9005BB93C /* EditWorkoutVC.swift */; };
 		227033401DE029AC005BB93C /* EditExerciseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270333F1DE029AC005BB93C /* EditExerciseVC.swift */; };
+		22A58C881E36A5CA004CA124 /* PastWorkoutsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A58C871E36A5CA004CA124 /* PastWorkoutsVC.swift */; };
 		22D04A8A1E0356A0006F0AA2 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D04A891E0356A0006F0AA2 /* UIStoryboardExtension.swift */; };
 		22EF025A1DE40D9800639A3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22EF02591DE40D9800639A3F /* GoogleService-Info.plist */; };
 		30E61A8CA7F30CE7D14E3714 /* Pods_GymAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F600C4E691668278D19BE28 /* Pods_GymAppUITests.framework */; };
@@ -68,6 +69,7 @@
 		227033391DE02755005BB93C /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		2270333B1DE028A9005BB93C /* EditWorkoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditWorkoutVC.swift; sourceTree = "<group>"; };
 		2270333F1DE029AC005BB93C /* EditExerciseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExerciseVC.swift; sourceTree = "<group>"; };
+		22A58C871E36A5CA004CA124 /* PastWorkoutsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastWorkoutsVC.swift; sourceTree = "<group>"; };
 		22D04A891E0356A0006F0AA2 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
 		22EF02591DE40D9800639A3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		636F3C5B50D2CC35137B9A9E /* Pods-GymAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GymAppTests/Pods-GymAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				22484B191E27149D005278C6 /* AddExerciseVC.swift */,
 				2270333F1DE029AC005BB93C /* EditExerciseVC.swift */,
 				223E5C2D1E31907100D76FFC /* ExerciseCell.swift */,
+				22A58C871E36A5CA004CA124 /* PastWorkoutsVC.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 			files = (
 				2270333A1DE02755005BB93C /* HomeVC.swift in Sources */,
 				227033401DE029AC005BB93C /* EditExerciseVC.swift in Sources */,
+				22A58C881E36A5CA004CA124 /* PastWorkoutsVC.swift in Sources */,
 				221BEB081DE435D2008E68B4 /* LoginVC.swift in Sources */,
 				2270333C1DE028A9005BB93C /* EditWorkoutVC.swift in Sources */,
 				22D04A8A1E0356A0006F0AA2 /* UIStoryboardExtension.swift in Sources */,

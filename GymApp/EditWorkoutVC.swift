@@ -20,8 +20,16 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         self.exercisesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        self.workout = Workout(userID: (FIRAuth.auth()?.currentUser?.uid)!){workout in
-            workout.RegisterCallback(){exercises in
+        if self.workout == nil{
+            self.workout = Workout(userID: (FIRAuth.auth()?.currentUser?.uid)!){workout in
+                workout.RegisterCallback(){exercises in
+                    self.items = exercises
+                    self.exercisesTable.reloadData()
+                }
+            }
+        }
+        else{
+            self.workout!.RegisterCallback(){exercises in
                 self.items = exercises
                 self.exercisesTable.reloadData()
             }
@@ -41,6 +49,14 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 self.items = exercises
                 self.exercisesTable.reloadData()
             }
+        }
+    }
+    
+    public func newWorkout(_ workout : Workout){
+        self.workout = workout
+        self.workout!.RegisterCallback(){exercises in
+            self.items = exercises
+            self.exercisesTable.reloadData()
         }
     }
     
