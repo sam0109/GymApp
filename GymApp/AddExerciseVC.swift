@@ -54,7 +54,7 @@ class AddExerciseVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             filteredData = searchText.isEmpty ? items : items.filter({(dataString: String) -> Bool in
-                return dataString.contains(searchText)  //TODO: make search capitalization insensitive
+                return dataString.lowercased().contains(searchText.lowercased())
             })
             tableView.reloadData()
         }

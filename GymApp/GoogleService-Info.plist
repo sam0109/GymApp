@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>685645780282-8ekari69kpjupnplcv406ufbfou27a6i.apps.googleusercontent.com</string>
+	<string>685645780282-t5q6u9q22ae7or9op349uk5v34nppnv0.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.685645780282-8ekari69kpjupnplcv406ufbfou27a6i</string>
+	<string>com.googleusercontent.apps.685645780282-t5q6u9q22ae7or9op349uk5v34nppnv0</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAUqwutXxh0yms-BIBhQG7XFF2kHqH4LJQ</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>SSobell.GymApp</string>
+	<string>com.SSobell.GymApp</string>
 	<key>PROJECT_ID</key>
 	<string>gym-app-7bda9</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:685645780282:ios:588c2d150dd80d95</string>
+	<string>1:685645780282:ios:cba7e5177fab76cf</string>
 	<key>DATABASE_URL</key>
 	<string>https://gym-app-7bda9.firebaseio.com</string>
 </dict>
