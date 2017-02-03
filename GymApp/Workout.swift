@@ -16,15 +16,18 @@ class Workout {
     static let exercisesRef: FIRDatabaseReference! = FIRDatabase.database().reference().child("Exercises")
     static let usersRef: FIRDatabaseReference! = FIRDatabase.database().reference().child("Users")
     private var ref: FIRDatabaseReference?
+    private var name : String?
+    private var date : TimeInterval?
+    private var duration : Int?
     
-    init()
+    init(completion : @escaping ((Workout) -> ()) = {_ in })
     {
-        self.ref = Workout.workoutsRef.childByAutoId()
+        self.newWorkout(completion: completion)
     }
     
-    init(workoutID : String)
+    init(workoutID : String, completion : @escaping ((Workout) -> ()) = {_ in })
     {
-        self.ref = Workout.workoutsRef.child(workoutID)
+        self.workoutFromID(workoutID: workoutID, completion: completion)
     }
     
     init(userID : String, completion : @escaping ((Workout) -> ()))
@@ -32,16 +35,33 @@ class Workout {
         Workout.usersRef.child(userID).observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             if value?["CurrentWorkout"] == nil{
-                self.ref = Workout.workoutsRef.childByAutoId()
-                self.ref?.updateChildValues(["Date" : NSDate.timeIntervalSinceReferenceDate])
-                Workout.usersRef.child(userID).updateChildValues(["CurrentWorkout" : self.ref?.key as Any])
-                Workout.usersRef.child(userID).child("Workouts").child((self.ref?.key)!).updateChildValues(["Date": NSDate.timeIntervalSinceReferenceDate])
+                self.newWorkout(completion: completion)
             }
             else{
-                self.ref = Workout.workoutsRef.child(value?["CurrentWorkout"] as! String)
+                self.workoutFromID(workoutID: value?["CurrentWorkout"] as! String, completion: completion)
             }
-            completion(self)
         })
+    }
+    
+    private func workoutFromID(workoutID : String, completion : @escaping ((Workout) -> ()) = {_ in }){
+        self.ref = Workout.workoutsRef.child(workoutID)
+        self.ref?.observe(FIRDataEventType.value, with: { (snapshot) in
+            let dict = snapshot.value as? [String : AnyObject] ?? [:]
+            self.date = dict["Date"] as? TimeInterval ?? NSDate.timeIntervalSinceReferenceDate
+            self.name = dict["Name"] as? String ?? ""
+            self.duration = dict["Duration"] as? Int ?? 0
+            completion(self)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func newWorkout(completion : @escaping ((Workout) -> ()) = {_ in }){
+        self.ref = Workout.workoutsRef.childByAutoId()
+        self.date = NSDate.timeIntervalSinceReferenceDate
+        self.name = ""
+        self.duration = 0
+        completion(self)
     }
     
     func RegisterCallback(_ completion : @escaping (([Exercise]) -> ())){
@@ -68,6 +88,25 @@ class Workout {
     {
         Workout.usersRef.child(userID).child("CurrentWorkout").removeValue()
         return Workout(userID: userID, completion: completion)
+    }
+    
+    func update(Name: String){
+        self.name = Name
+        self.saveWorkoutVals()
+    }
+    
+    func update(Date: TimeInterval){
+        self.date = Date
+        self.saveWorkoutVals()
+    }
+    
+    func update(Duration: Int){
+        self.duration = Duration
+        self.saveWorkoutVals()
+    }
+    
+    func saveWorkoutVals(){
+        self.ref?.updateChildValues(["Name" : self.name ?? "", "Date" : self.date ?? NSDate.timeIntervalSinceReferenceDate, "Duration" : self.duration ?? 0])
     }
     
     class func getWorkoutsForUser(_ userID : String, completion : @escaping ([(Double, String)]) -> ()){

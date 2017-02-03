@@ -10,12 +10,17 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
+    @IBOutlet weak var workoutName: UITextField!
+    @IBOutlet weak var duration: UITextField!
+    @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var exercisesTable: UITableView!
     var workout : Workout?
+    var workoutStartDate : TimeInterval?
     var items: [Exercise] = []
     var selectedExercise : Exercise?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +91,42 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
 
-
+    @IBAction func textFieldEditing(_ sender: UITextField) {
+        let datePickerView:UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
+        sender.inputView = datePickerView
+        datePickerView.addTarget(self, action: #selector(EditWorkoutVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
+    }
+    
+    func datePickerValueChanged(sender:UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        dateFormatter.timeStyle = DateFormatter.Style.medium
+        dateTextField.text = dateFormatter.string(from: sender.date)
+        self.workoutStartDate = sender.date.timeIntervalSinceReferenceDate
+    }
+    
+    @IBAction func doneEditingName(_ sender: Any) {
+        self.workout?.update(Name: self.workoutName.text ?? "")
+    }
+    
+    @IBAction func doneEditingDuration(_ sender: Any) {
+        self.workout?.update(Duration: Int(self.workoutName.text ?? "0") ?? 0)
+    }
+    
+    @IBAction func doneEditingStartTime(_ sender: Any) {
+        self.workout?.update(Date: self.workoutStartDate ?? NSDate.timeIntervalSinceReferenceDate)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        textBox.resignFirstResponder()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? AddExerciseVC {
             dest.workout = self.workout

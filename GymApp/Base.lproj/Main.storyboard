@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QLU-6l-lVl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QLU-6l-lVl">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G7D-iq-A0J" id="kXA-Bn-rhM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2n-GF-Ri8">
@@ -86,7 +86,13 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start Time" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jRY-ad-wUA">
                                 <rect key="frame" x="16" y="122" width="187" height="30"/>
                                 <nil key="textColor"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="doneEditingStartTime:" destination="Xzq-Ty-UOI" eventType="editingDidEnd" id="ddV-Nn-Gm2"/>
+                                    <action selector="textFieldEditing:" destination="Xzq-Ty-UOI" eventType="editingDidBegin" id="SDU-p8-gKQ"/>
+                                    <outlet property="delegate" destination="Xzq-Ty-UOI" id="FMR-sl-SM9"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Duration" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zOG-Bp-dsa">
                                 <rect key="frame" x="211" y="122" width="147" height="30"/>
@@ -95,13 +101,21 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="doneEditingDuration:" destination="Xzq-Ty-UOI" eventType="editingDidEnd" id="4LE-OB-iOw"/>
+                                    <outlet property="delegate" destination="Xzq-Ty-UOI" id="8RI-88-Tkw"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Workout Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Mg-1n-Eb5">
                                 <rect key="frame" x="15" y="82" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="doneEditingName:" destination="Xzq-Ty-UOI" eventType="editingDidEnd" id="Wuy-wc-mFx"/>
+                                    <outlet property="delegate" destination="Xzq-Ty-UOI" id="RGC-0b-rrb"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -125,7 +139,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Current Workout" image="second" id="7rV-1r-nW2"/>
                     <connections>
+                        <outlet property="dateTextField" destination="jRY-ad-wUA" id="40s-eT-sdR"/>
+                        <outlet property="duration" destination="zOG-Bp-dsa" id="KHh-Kx-WkQ"/>
                         <outlet property="exercisesTable" destination="oXk-G4-HBj" id="d0c-QL-V4R"/>
+                        <outlet property="workoutName" destination="1Mg-1n-Eb5" id="kr6-c3-jvF"/>
                         <segue destination="h8I-Je-KIZ" kind="showDetail" identifier="add_exercise" id="xq3-n1-YP5"/>
                     </connections>
                 </viewController>
