@@ -26,8 +26,9 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         super.viewDidLoad()
         self.exercisesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         if self.workout == nil{
-            self.workout = Workout(userID: (FIRAuth.auth()?.currentUser?.uid)!){workout in
+            Workout.newWorkoutForUser(){workout in
                 workout.RegisterCallback(){exercises in
+                    self.workout = workout
                     self.items = exercises
                     self.exercisesTable.reloadData()
                 }
@@ -49,7 +50,9 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     @IBAction func doneEditingWorkout(_ sender: Any) {
-        self.workout = workout?.saveAndReplaceWorkout(userID: (FIRAuth.auth()?.currentUser?.uid)!){workout in
+        workout?.saveAndReplaceWorkout(){workout in
+            self.workout = workout
+            
             workout.RegisterCallback(){exercises in
                 self.items = exercises
                 self.exercisesTable.reloadData()
@@ -62,6 +65,7 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.workout!.RegisterCallback(){exercises in
             self.items = exercises
             self.exercisesTable.reloadData()
+            self.reloadWorkoutFields()
         }
     }
     
@@ -101,7 +105,7 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func datePickerValueChanged(sender:UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.short
-        dateFormatter.timeStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.short
         dateTextField.text = dateFormatter.string(from: sender.date)
         self.workoutStartDate = sender.date.timeIntervalSinceReferenceDate
     }
@@ -118,13 +122,24 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.workout?.update(Date: self.workoutStartDate ?? NSDate.timeIntervalSinceReferenceDate)
     }
     
+    func reloadWorkoutFields(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        self.dateTextField.text = dateFormatter.string(from: NSDate(timeIntervalSinceReferenceDate: (self.workout?.date)!) as Date)
+        self.workoutName.text = self.workout?.name ?? ""
+        self.duration.text = String(self.workout?.duration ?? 0)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        textBox.resignFirstResponder()
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        workoutName.resignFirstResponder()
+        duration.resignFirstResponder()
+        dateTextField.resignFirstResponder()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

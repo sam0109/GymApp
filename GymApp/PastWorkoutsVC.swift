@@ -12,12 +12,12 @@ import FirebaseAuth
 class PastWorkoutsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var workoutsTable: UITableView!
-    var workouts : [(Double, String)] = []
+    var workouts : [(Double, String, String)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.workoutsTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        Workout.getWorkoutsForUser((FIRAuth.auth()?.currentUser?.uid)!) { workouts in
+        Workout.getWorkoutsForCurrentUser() { workouts in
             self.workouts = workouts
             self.workoutsTable.reloadData()
         }
@@ -33,13 +33,15 @@ class PastWorkoutsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.workoutsTable.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = NSDate(timeIntervalSinceReferenceDate: self.workouts[indexPath.row].0).description
+        cell.textLabel?.text = self.workouts[indexPath.row].1
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dest = tabBarController?.viewControllers?[0] as! EditWorkoutVC
-        dest.newWorkout(Workout(workoutID: workouts[indexPath.row].1))
-        tabBarController?.selectedIndex = 0
+        Workout.newWorkout(workoutID: workouts[indexPath.row].1){ workout in
+            dest.newWorkout(workout)
+            self.tabBarController?.selectedIndex = 0
+        }
     }
 }

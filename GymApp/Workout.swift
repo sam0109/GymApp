@@ -16,56 +16,47 @@ class Workout {
     static let exercisesRef: FIRDatabaseReference! = FIRDatabase.database().reference().child("Exercises")
     static let usersRef: FIRDatabaseReference! = FIRDatabase.database().reference().child("Users")
     private var ref: FIRDatabaseReference?
-    private var name : String?
-    private var date : TimeInterval?
-    private var duration : Int?
-    
-    init(completion : @escaping ((Workout) -> ()) = {_ in })
-    {
-        self.newWorkout(completion: completion)
+    public private(set) var name : String?
+    public private(set) var date : TimeInterval?
+    public private(set) var duration : Int?
+
+    class func newWorkout(workoutID : String, completion : @escaping ((Workout) -> ())){
+        let workout = Workout()
+        workout.workoutFromID(workoutID: workoutID, completion: completion)
     }
     
-    init(workoutID : String, completion : @escaping ((Workout) -> ()) = {_ in })
-    {
-        self.workoutFromID(workoutID: workoutID, completion: completion)
-    }
-    
-    init(userID : String, completion : @escaping ((Workout) -> ()))
-    {
-        Workout.usersRef.child(userID).observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
+    class func newWorkoutForUser(completion : @escaping ((Workout) -> ())){
+        Workout.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
+            let workout = Workout()
             if value?["CurrentWorkout"] == nil{
-                self.newWorkout(completion: completion)
+                workout.ref = Workout.workoutsRef.childByAutoId()
+                workout.date = NSDate.timeIntervalSinceReferenceDate
+                workout.name = ""
+                workout.duration = 0
+                workout.saveWorkoutVals()
+                Workout.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).updateChildValues(["CurrentWorkout" : workout.ref!.key])
+                completion(workout)
             }
             else{
-                self.workoutFromID(workoutID: value?["CurrentWorkout"] as! String, completion: completion)
+                workout.workoutFromID(workoutID: value?["CurrentWorkout"] as! String, completion: completion)
             }
         })
     }
     
-    private func workoutFromID(workoutID : String, completion : @escaping ((Workout) -> ()) = {_ in }){
+    private func workoutFromID(workoutID : String, completion : @escaping ((Workout) -> ())){
         self.ref = Workout.workoutsRef.child(workoutID)
-        self.ref?.observe(FIRDataEventType.value, with: { (snapshot) in
+        self.ref?.observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
             let dict = snapshot.value as? [String : AnyObject] ?? [:]
-            self.date = dict["Date"] as? TimeInterval ?? NSDate.timeIntervalSinceReferenceDate
-            self.name = dict["Name"] as? String ?? ""
-            self.duration = dict["Duration"] as? Int ?? 0
+            self.date = dict["Date"] as? TimeInterval
+            self.name = dict["Name"] as? String
+            self.duration = dict["Duration"] as? Int
             completion(self)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
-    
-    private func newWorkout(completion : @escaping ((Workout) -> ()) = {_ in }){
-        self.ref = Workout.workoutsRef.childByAutoId()
-        self.date = NSDate.timeIntervalSinceReferenceDate
-        self.name = ""
-        self.duration = 0
-        completion(self)
+        })
     }
     
     func RegisterCallback(_ completion : @escaping (([Exercise]) -> ())){
-        self.ref?.child("Exercises").observe(FIRDataEventType.value, with: { (snapshot) in
+        self.ref?.child("Exercises").observe(FIRDataEventType.value, with: { (snapshot) in  //TODO: update to observe all parts of workout
             let dict = snapshot.value as? [String : AnyObject] ?? [:]
             var exerciseList : [Exercise] = []
             for (key, value) in dict
@@ -84,10 +75,10 @@ class Workout {
         return (self.ref?.child("Exercises").childByAutoId())!
     }
     
-    func saveAndReplaceWorkout(userID : String, completion : @escaping ((Workout) -> ())) -> Workout
+    func saveAndReplaceWorkout(completion : @escaping ((Workout) -> ()))
     {
-        Workout.usersRef.child(userID).child("CurrentWorkout").removeValue()
-        return Workout(userID: userID, completion: completion)
+        Workout.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).child("CurrentWorkout").removeValue()
+        Workout.newWorkoutForUser(completion: completion)
     }
     
     func update(Name: String){
@@ -106,15 +97,16 @@ class Workout {
     }
     
     func saveWorkoutVals(){
-        self.ref?.updateChildValues(["Name" : self.name ?? "", "Date" : self.date ?? NSDate.timeIntervalSinceReferenceDate, "Duration" : self.duration ?? 0])
+        self.ref?.updateChildValues(["Name" : self.name!, "Date" : self.date!, "Duration" : self.duration!])
+        Workout.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).child("Workouts").child(self.ref!.key).updateChildValues(["Name": self.name!, "Date" : self.date!])
     }
     
-    class func getWorkoutsForUser(_ userID : String, completion : @escaping ([(Double, String)]) -> ()){
-        Workout.usersRef.child(userID).child("Workouts").observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
+    class func getWorkoutsForCurrentUser(completion : @escaping ([(Double, String, String)]) -> ()){
+        Workout.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).child("Workouts").observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
             let dict = snapshot.value as? [String : AnyObject] ?? [:]
-            var result : [(Double, String)] = []
+            var result : [(Double, String, String)] = []
             for (key, value) in dict{
-                result.append(value["Date"] as! Double, key)
+                result.append(value["Date"] as! Double,value["Name"] as! String , key)
             }
             result.sort(by: {$0.0 > $1.0})
             completion(result)
