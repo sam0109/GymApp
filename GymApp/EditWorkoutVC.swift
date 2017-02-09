@@ -27,18 +27,11 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.exercisesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         if self.workout == nil{
             Workout.newWorkoutForUser(){workout in
-                workout.RegisterCallback(){exercises in
-                    self.workout = workout
-                    self.items = exercises
-                    self.exercisesTable.reloadData()
-                }
+                self.registerNewWorkout(workout)
             }
         }
         else{
-            self.workout!.RegisterCallback(){exercises in
-                self.items = exercises
-                self.exercisesTable.reloadData()
-            }
+            self.registerNewWorkout(self.workout!)
         }
         // Do any additional setup after loading the view.
 
@@ -49,24 +42,26 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func doneEditingWorkout(_ sender: Any) {
-        workout?.saveAndReplaceWorkout(){workout in
-            self.workout = workout
-            
-            workout.RegisterCallback(){exercises in
-                self.items = exercises
-                self.exercisesTable.reloadData()
-            }
-        }
-    }
-    
-    public func newWorkout(_ workout : Workout){
+    func registerNewWorkout(_ workout : Workout){
         self.workout = workout
         self.workout!.RegisterCallback(){exercises in
             self.items = exercises
             self.exercisesTable.reloadData()
-            self.reloadWorkoutFields()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = DateFormatter.Style.short
+            dateFormatter.timeStyle = DateFormatter.Style.short
+            self.dateTextField.text = dateFormatter.string(from: NSDate(timeIntervalSinceReferenceDate: (self.workout?.date)!) as Date)
+            self.workoutName.text = self.workout?.name ?? ""
+            self.duration.text = String(self.workout?.duration ?? 0)
         }
+    }
+    
+    @IBAction func doneEditingWorkout(_ sender: Any) {
+        self.workout?.update(Name: self.workoutName.text ?? "")
+        self.workout?.update(Duration: Int(self.workoutName.text ?? "0") ?? 0)
+        self.workout?.update(Date: self.workoutStartDate ?? NSDate.timeIntervalSinceReferenceDate)
+        
+        workout?.saveAndReplaceWorkout(){self.registerNewWorkout($0)}
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -120,15 +115,6 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     @IBAction func doneEditingStartTime(_ sender: Any) {
         self.workout?.update(Date: self.workoutStartDate ?? NSDate.timeIntervalSinceReferenceDate)
-    }
-    
-    func reloadWorkoutFields(){
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        dateFormatter.timeStyle = DateFormatter.Style.short
-        self.dateTextField.text = dateFormatter.string(from: NSDate(timeIntervalSinceReferenceDate: (self.workout?.date)!) as Date)
-        self.workoutName.text = self.workout?.name ?? ""
-        self.duration.text = String(self.workout?.duration ?? 0)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

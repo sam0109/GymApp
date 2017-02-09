@@ -39,8 +39,8 @@ class PastWorkoutsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dest = tabBarController?.viewControllers?[0] as! EditWorkoutVC
-        Workout.newWorkout(workoutID: workouts[indexPath.row].1){ workout in
-            dest.newWorkout(workout)
+        Workout.newWorkout(workoutID: workouts[indexPath.row].2){ workout in
+            dest.registerNewWorkout(workout)
             self.tabBarController?.selectedIndex = 0
         }
     }
