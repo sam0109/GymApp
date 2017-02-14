@@ -16,7 +16,6 @@ class PastWorkoutsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.workoutsTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.workoutsTable.allowsMultipleSelectionDuringEditing = false;
         Workout.getWorkoutsForCurrentUser() { workouts in
             self.workouts = workouts
@@ -33,8 +32,14 @@ class PastWorkoutsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.workoutsTable.dequeueReusableCell(withIdentifier: "cell")!
+        let cell = self.workoutsTable.dequeueReusableCell(withIdentifier: "workout_cell")!
         cell.textLabel?.text = self.workouts[indexPath.row].1
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        let date = Date(timeIntervalSinceReferenceDate: self.workouts[indexPath.row].0)
+        cell.detailTextLabel?.text = dateFormatter.string(from: date)
         return cell
     }
     

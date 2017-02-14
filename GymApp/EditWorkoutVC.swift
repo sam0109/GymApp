@@ -24,7 +24,6 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.exercisesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.exercisesTable.allowsMultipleSelectionDuringEditing = false;
         if self.workout == nil{
             Workout.newWorkoutForUser(){workout in
@@ -95,7 +94,7 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = self.exercisesTable.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        let cell: UITableViewCell = self.exercisesTable.dequeueReusableCell(withIdentifier: "exercise_cell")! as UITableViewCell
         
         if indexPath.row == items.count {
             cell.textLabel?.text = "Add Exercise"
@@ -121,7 +120,6 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         sender.inputView = datePickerView
         datePickerView.addTarget(self, action: #selector(EditWorkoutVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
-
     }
     
     func datePickerValueChanged(sender:UIDatePicker) {
