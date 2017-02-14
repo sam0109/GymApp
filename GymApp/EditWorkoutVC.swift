@@ -25,6 +25,7 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         self.exercisesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.exercisesTable.allowsMultipleSelectionDuringEditing = false;
         if self.workout == nil{
             Workout.newWorkoutForUser(){workout in
                 self.registerNewWorkout(workout)
@@ -57,15 +58,40 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     @IBAction func doneEditingWorkout(_ sender: Any) {
+        
+        if (self.workoutName.text?.isEmpty)! {
+            let alert = UIAlertController(title: "No Name", message: "Please enter a name for the workout!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        if self.duration.text == "0" {
+            let alert = UIAlertController(title: "Zero Duration", message: "Please enter a duration for the workout!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         self.workout?.update(Name: self.workoutName.text ?? "")
-        self.workout?.update(Duration: Int(self.workoutName.text ?? "0") ?? 0)
+        self.workout?.update(Duration: Int(self.duration.text ?? "0") ?? 0)
         self.workout?.update(Date: self.workoutStartDate ?? NSDate.timeIntervalSinceReferenceDate)
         
-        workout?.saveAndReplaceWorkout(){self.registerNewWorkout($0)}
+        workout?.replaceWorkout(){self.registerNewWorkout($0)}
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count + 1;
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true;
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            self.items[indexPath.row].deleteExercise()
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,10 +117,11 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
 
     @IBAction func textFieldEditing(_ sender: UITextField) {
-        let datePickerView:UIDatePicker = UIDatePicker()
+        let datePickerView : UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         sender.inputView = datePickerView
         datePickerView.addTarget(self, action: #selector(EditWorkoutVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
+
     }
     
     func datePickerValueChanged(sender:UIDatePicker) {

@@ -75,10 +75,16 @@ class Workout {
         return (self.ref?.child("Exercises").childByAutoId())!
     }
     
-    func saveAndReplaceWorkout(completion : @escaping ((Workout) -> ()))
+    func replaceWorkout(completion : @escaping ((Workout) -> ()))
     {
-        Workout.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).child("CurrentWorkout").removeValue()
-        Workout.newWorkoutForUser(completion: completion)
+        let id = (FIRAuth.auth()?.currentUser?.uid)!
+        Workout.usersRef.child(id).observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            if self.ref?.key == value?["CurrentWorkout"] as? String{
+                Workout.usersRef.child(id).child("CurrentWorkout").removeValue()
+            }
+            Workout.newWorkoutForUser(completion: completion)
+        })
     }
     
     func update(Name: String){
@@ -101,12 +107,21 @@ class Workout {
         Workout.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).child("Workouts").child(self.ref!.key).updateChildValues(["Name": self.name!, "Date" : self.date!])
     }
     
+    class func deleteWorkout(_ workoutID : String){
+        Workout.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).child("Workouts").child(workoutID).removeValue()
+        Workout.workoutsRef.child(workoutID).removeValue()
+    }
+    
     class func getWorkoutsForCurrentUser(completion : @escaping ([(Double, String, String)]) -> ()){
-        Workout.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).child("Workouts").observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
-            let dict = snapshot.value as? [String : AnyObject] ?? [:]
+        Workout.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).observe(FIRDataEventType.value, with: { (snapshot) in
+            let userVals = snapshot.value as? [String : AnyObject] ?? [:]
+            let currentWorkout = userVals["CurrentWorkout"] as? String ?? ""
+            let dict = userVals["Workouts"] as? [String : AnyObject] ?? [:]
             var result : [(Double, String, String)] = []
             for (key, value) in dict{
-                result.append(value["Date"] as! Double,value["Name"] as! String , key)
+                if key != currentWorkout {
+                    result.append(value["Date"] as! Double,value["Name"] as! String , key)
+                }
             }
             result.sort(by: {$0.0 > $1.0})
             completion(result)

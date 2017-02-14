@@ -17,6 +17,7 @@ class PastWorkoutsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         self.workoutsTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.workoutsTable.allowsMultipleSelectionDuringEditing = false;
         Workout.getWorkoutsForCurrentUser() { workouts in
             self.workouts = workouts
             self.workoutsTable.reloadData()
@@ -42,6 +43,16 @@ class PastWorkoutsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         Workout.newWorkout(workoutID: workouts[indexPath.row].2){ workout in
             dest.registerNewWorkout(workout)
             self.tabBarController?.selectedIndex = 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true;
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            Workout.deleteWorkout(workouts[indexPath.row].2)
         }
     }
 }

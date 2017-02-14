@@ -82,6 +82,10 @@ class Exercise {
         self.properties?[name] = value
     }
     
+    func deleteExercise(){
+        self.ref?.removeValue()
+    }
+    
     class func getExercises(_ completion : @escaping (([String]) -> ()) = {_ in }) {
         Workout.exercisesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let exercisesDict = snapshot.value as? [String : AnyObject] ?? [:]
