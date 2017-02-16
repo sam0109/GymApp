@@ -15,8 +15,6 @@ import FirebaseGoogleAuthUI
 
 class LoginVC: UIViewController, FUIAuthDelegate {
     
-    //fileprivate(set) var authUI: FUIAuth? = FUIAuth.defaultAuthUI()
-    
     override func viewDidLoad() {
         let authUI = FUIAuth.defaultAuthUI()
         
@@ -28,18 +26,19 @@ class LoginVC: UIViewController, FUIAuthDelegate {
         authUI?.providers = providers
         
         authUI?.delegate = self as FUIAuthDelegate?
-
+        
         super.viewDidLoad()
-        checkLogin();
+        
+        let authViewController = authUI!.authViewController()
+        self.present(authViewController, animated: true, completion: nil)
+    }
+    
+    func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
+        return CustomAuthVC(authUI: authUI)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func checkLogin() {
-        let controller = FUIAuth.defaultAuthUI()?.authViewController()
-        self.present(controller!, animated: true, completion: nil)
     }
     
     //called after login completed

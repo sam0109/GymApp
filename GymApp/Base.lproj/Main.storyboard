@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oXk-G4-HBj">
-                                <rect key="frame" x="0.0" y="182" width="375" height="436"/>
+                                <rect key="frame" x="0.0" y="182" width="375" height="485"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="exercise_cell" textLabel="dyk-ra-URQ" style="IBUITableViewCellStyleDefault" id="JhS-W8-bR3">
@@ -51,6 +51,10 @@
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRq-SP-3Uq">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Edit Workout" id="39j-Wf-gBb">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="Nha-2B-SGb">
@@ -65,6 +69,9 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="Xzq-Ty-UOI" id="R7Z-14-MQl"/>
+                                </connections>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jRY-ad-wUA">
                                 <rect key="frame" x="16" y="144" width="187" height="30"/>
@@ -134,7 +141,7 @@
                             <constraint firstItem="1Mg-1n-Eb5" firstAttribute="leading" secondItem="Mbk-NL-zCc" secondAttribute="leadingMargin" id="y0B-gr-dzP"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Current Workout" image="second" id="7rV-1r-nW2"/>
+                    <tabBarItem key="tabBarItem" title="Current Workout" image="dumbbell-for-training" selectedImage="dumbbell-for-training" id="7rV-1r-nW2"/>
                     <connections>
                         <outlet property="dateTextField" destination="jRY-ad-wUA" id="40s-eT-sdR"/>
                         <outlet property="duration" destination="zOG-Bp-dsa" id="KHh-Kx-WkQ"/>
@@ -198,6 +205,9 @@
                                 <items>
                                     <navigationItem title="Past Workouts" id="FYh-fV-cmx"/>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="ZFV-iT-82F" id="lcX-iC-htK"/>
+                                </connections>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -211,7 +221,7 @@
                             <constraint firstItem="64o-77-bb7" firstAttribute="top" secondItem="OcN-7y-PaT" secondAttribute="bottom" id="xlv-Yf-Kno"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Past Workouts" selectedImage="ic_email.png" id="8CM-Ds-GPP"/>
+                    <tabBarItem key="tabBarItem" title="Past Workouts" image="document" selectedImage="document" id="8CM-Ds-GPP"/>
                     <connections>
                         <outlet property="workoutsTable" destination="64o-77-bb7" id="G7S-la-U9J"/>
                         <segue destination="Xzq-Ty-UOI" kind="show" identifier="show_workout" id="LGr-zA-Ask"/>
@@ -250,6 +260,9 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="UQz-uq-b98" id="zwE-NE-deX"/>
+                                </connections>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GYy-Jz-Pq1">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
@@ -329,6 +342,9 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="h8I-Je-KIZ" id="6Z3-3c-kLw"/>
+                                </connections>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Tb-w3-FOC">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
@@ -359,12 +375,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iFR-7u-h5r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1066" y="1585"/>
+            <point key="canvasLocation" x="-1039" y="1585"/>
         </scene>
-        <!--HomeVC-->
+        <!--Workout Statistics-->
         <scene sceneID="lYX-RO-su6">
             <objects>
-                <viewController id="wLE-6Q-kSz" customClass="HomeVC" customModule="GymApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wLE-6Q-kSz" customClass="StatisticsVC" customModule="GymApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2hK-bQ-IAg"/>
                         <viewControllerLayoutGuide type="bottom" id="Jic-yO-1jf"/>
@@ -379,11 +395,14 @@
                                 <items>
                                     <navigationItem title="Workout Statistics" id="ez9-R9-dSU"/>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="wLE-6Q-kSz" id="A8u-FX-Y1t"/>
+                                </connections>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" id="09C-AA-1of"/>
+                    <tabBarItem key="tabBarItem" title="Workout Statistics" image="line-graph" selectedImage="line-graph" id="09C-AA-1of"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cca-IU-R8t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -401,24 +420,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kae-Uh-Zou">
-                                <rect key="frame" x="16" y="64" width="343" height="595"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Bgd-Zx-udi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Zja-d3-0Dc"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <segue destination="F1B-oT-rZg" kind="presentation" identifier="enter_app" id="3kz-6V-cuO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QhT-52-T9k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="225" y="-852"/>
+            <point key="canvasLocation" x="224.80000000000001" y="-852.3238380809596"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Z87-3Y-6ya">
@@ -457,10 +474,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_email.png" width="24" height="24"/>
-        <image name="second" width="30" height="30"/>
+        <image name="background" width="2592" height="1728"/>
+        <image name="document" width="29" height="29"/>
+        <image name="dumbbell-for-training" width="32" height="32"/>
+        <image name="line-graph" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LGr-zA-Ask"/>
+        <segue reference="sdv-5P-fYQ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220BBA661E5531C700263DB5 /* CustomAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220BBA651E5531C700263DB5 /* CustomAuthVC.swift */; };
 		221BEB081DE435D2008E68B4 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221BEB071DE435D2008E68B4 /* LoginVC.swift */; };
 		221BEB0B1DE43776008E68B4 /* GAUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221BEB0A1DE43776008E68B4 /* GAUtilities.swift */; };
 		223E5C2E1E31907100D76FFC /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223E5C2D1E31907100D76FFC /* ExerciseCell.swift */; };
@@ -18,7 +19,7 @@
 		227033101DE02010005BB93C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2270330F1DE02010005BB93C /* Assets.xcassets */; };
 		2270331E1DE02010005BB93C /* GymAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270331D1DE02010005BB93C /* GymAppTests.swift */; };
 		227033291DE02010005BB93C /* GymAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227033281DE02010005BB93C /* GymAppUITests.swift */; };
-		2270333A1DE02755005BB93C /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227033391DE02755005BB93C /* HomeVC.swift */; };
+		2270333A1DE02755005BB93C /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227033391DE02755005BB93C /* StatisticsVC.swift */; };
 		2270333C1DE028A9005BB93C /* EditWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270333B1DE028A9005BB93C /* EditWorkoutVC.swift */; };
 		227033401DE029AC005BB93C /* EditExerciseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270333F1DE029AC005BB93C /* EditExerciseVC.swift */; };
 		22A58C881E36A5CA004CA124 /* PastWorkoutsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A58C871E36A5CA004CA124 /* PastWorkoutsVC.swift */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		1BBE471CD02F8602EED814CF /* Pods-GymApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-GymApp/Pods-GymApp.release.xcconfig"; sourceTree = "<group>"; };
 		20C957D6D248F431738E9898 /* Pods-GymApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GymApp/Pods-GymApp.debug.xcconfig"; sourceTree = "<group>"; };
+		220BBA651E5531C700263DB5 /* CustomAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAuthVC.swift; sourceTree = "<group>"; };
 		221BEB071DE435D2008E68B4 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		221BEB0A1DE43776008E68B4 /* GAUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAUtilities.swift; sourceTree = "<group>"; };
 		223E5C2D1E31907100D76FFC /* ExerciseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
@@ -66,7 +68,7 @@
 		227033241DE02010005BB93C /* GymAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		227033281DE02010005BB93C /* GymAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymAppUITests.swift; sourceTree = "<group>"; };
 		2270332A1DE02010005BB93C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		227033391DE02755005BB93C /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		227033391DE02755005BB93C /* StatisticsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsVC.swift; sourceTree = "<group>"; };
 		2270333B1DE028A9005BB93C /* EditWorkoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditWorkoutVC.swift; sourceTree = "<group>"; };
 		2270333F1DE029AC005BB93C /* EditExerciseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExerciseVC.swift; sourceTree = "<group>"; };
 		22A58C871E36A5CA004CA124 /* PastWorkoutsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastWorkoutsVC.swift; sourceTree = "<group>"; };
@@ -177,12 +179,13 @@
 			isa = PBXGroup;
 			children = (
 				221BEB071DE435D2008E68B4 /* LoginVC.swift */,
-				227033391DE02755005BB93C /* HomeVC.swift */,
+				227033391DE02755005BB93C /* StatisticsVC.swift */,
 				2270333B1DE028A9005BB93C /* EditWorkoutVC.swift */,
 				22484B191E27149D005278C6 /* AddExerciseVC.swift */,
 				2270333F1DE029AC005BB93C /* EditExerciseVC.swift */,
 				223E5C2D1E31907100D76FFC /* ExerciseCell.swift */,
 				22A58C871E36A5CA004CA124 /* PastWorkoutsVC.swift */,
+				220BBA651E5531C700263DB5 /* CustomAuthVC.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -501,7 +504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2270333A1DE02755005BB93C /* HomeVC.swift in Sources */,
+				2270333A1DE02755005BB93C /* StatisticsVC.swift in Sources */,
 				227033401DE029AC005BB93C /* EditExerciseVC.swift in Sources */,
 				22A58C881E36A5CA004CA124 /* PastWorkoutsVC.swift in Sources */,
 				221BEB081DE435D2008E68B4 /* LoginVC.swift in Sources */,
@@ -513,6 +516,7 @@
 				223E5C2E1E31907100D76FFC /* ExerciseCell.swift in Sources */,
 				226B764B1DE419DF007E9BD0 /* Workout.swift in Sources */,
 				22484B1A1E27149D005278C6 /* AddExerciseVC.swift in Sources */,
+				220BBA661E5531C700263DB5 /* CustomAuthVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

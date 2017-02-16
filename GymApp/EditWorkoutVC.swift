@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationBarDelegate {
 
     @IBOutlet weak var workoutName: UITextField!
     @IBOutlet weak var duration: UITextField!
@@ -40,6 +40,10 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.topAttached
     }
     
     func registerNewWorkout(_ workout : Workout){

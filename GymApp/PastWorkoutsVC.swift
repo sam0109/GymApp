@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class PastWorkoutsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PastWorkoutsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate {
 
     @IBOutlet weak var workoutsTable: UITableView!
     var workouts : [(Double, String, String)] = []
@@ -25,6 +25,10 @@ class PastWorkoutsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.topAttached
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

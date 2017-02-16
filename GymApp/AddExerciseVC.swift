@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
-class AddExerciseVC: UIViewController, UITableViewDataSource, UITableViewDelegate,UISearchResultsUpdating {
+class AddExerciseVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UINavigationBarDelegate {
     var workout : Workout?
     var exerciseName = ""
     var items : [String] = []
@@ -39,6 +39,11 @@ class AddExerciseVC: UIViewController, UITableViewDataSource, UITableViewDelegat
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.topAttached
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

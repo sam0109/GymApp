@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditExerciseVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EditExerciseVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate {
     var workout : Workout?
     var exercise : Exercise?
     var transitionedFromCreate = false
@@ -25,6 +25,10 @@ class EditExerciseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.valueTable.reloadData()
             }
         }
+    }
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.topAttached
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
