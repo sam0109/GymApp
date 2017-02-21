@@ -18,8 +18,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FIRApp.configure()
-        
+        setTheme()
         return true
+    }
+    
+    func setTheme(){
+        let colors = [
+            "tint"              : "C0573D".hexColor,
+            "text"              : "000000".hexColor,
+            "background"        : "D6DDE8".hexColor,
+            "bar"               : "9BA4B7".hexColor,
+            "item"              : "FFFFFF".hexColor
+        ]
+        
+        let bar = UINavigationBar.appearance()
+        //bar.barTintColor = colors["bar"]
+        bar.tintColor = colors["tint"]
+        //bar.titleTextAttributes = [NSForegroundColorAttributeName: colors["text"]!]
+        
+        let table = UITableView.appearance()
+        table.backgroundColor = colors["background"]
+        table.separatorColor = colors["background"]
+        table.separatorInset = .zero
+        
+        let item = UITableViewCell.appearance()
+        item.selectionStyle = .none
+        item.backgroundColor = colors["item"]
+        
     }
     
     @available(iOS 9.0, *)

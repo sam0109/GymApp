@@ -33,8 +33,13 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         else{
             self.registerNewWorkout(self.workout!)
         }
-        // Do any additional setup after loading the view.
-
+        
+        //draw a line to separate exercisesTable
+        let px = 1 / UIScreen.main.scale
+        let frame = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.exercisesTable.frame.size.width, height: px))
+        let line = UIView(frame: frame)
+        self.exercisesTable.tableHeaderView = line
+        line.backgroundColor = self.exercisesTable.separatorColor
     }
 
     override func didReceiveMemoryWarning() {
