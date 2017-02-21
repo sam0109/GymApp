@@ -24,8 +24,23 @@ class CustomAuthVC: FUIAuthPickerViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        //TODO: figure out how to get the navigation controller properly, as below doesn't work
+        //self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        assignbackground()
+    }
+    
+    func assignbackground(){
+        let background = UIImage(named: "background")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIViewContentMode.scaleAspectFill
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubview(toBack: imageView)
     }
 
     override func didReceiveMemoryWarning() {
