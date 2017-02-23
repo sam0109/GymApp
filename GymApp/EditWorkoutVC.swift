@@ -16,6 +16,7 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var duration: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var exercisesTable: UITableView!
+    
     var workout : Workout?
     var workoutStartDate : TimeInterval?
     var items: [Exercise] = []
@@ -64,9 +65,8 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             self.duration.text = String(self.workout?.duration ?? 0)
         }
     }
-    
+
     @IBAction func doneEditingWorkout(_ sender: Any) {
-        
         if (self.workoutName.text?.isEmpty)! {
             let alert = UIAlertController(title: "No Name", message: "Please enter a name for the workout!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -143,6 +143,9 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.workout?.update(Name: self.workoutName.text ?? "")
     }
     
+    @IBAction func durationChanged(_ sender: Any) {
+        self.workout?.update(Duration: Int(self.workoutName.text ?? "0") ?? 0)
+    }
     @IBAction func doneEditingDuration(_ sender: Any) {
         self.workout?.update(Duration: Int(self.workoutName.text ?? "0") ?? 0)
     }

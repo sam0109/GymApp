@@ -31,6 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "item"              : "FFFFFF".hexColor
         ]
         
+        let tab = UITabBar.appearance()
+        tab.tintColor = colors["tint"]
+        
         let bar = UINavigationBar.appearance()
         //bar.barTintColor = colors["bar"]
         bar.tintColor = colors["tint"]

@@ -22,6 +22,7 @@
 		2270333A1DE02755005BB93C /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227033391DE02755005BB93C /* StatisticsVC.swift */; };
 		2270333C1DE028A9005BB93C /* EditWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270333B1DE028A9005BB93C /* EditWorkoutVC.swift */; };
 		227033401DE029AC005BB93C /* EditExerciseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2270333F1DE029AC005BB93C /* EditExerciseVC.swift */; };
+		229CD7AA1E5E63960071CC26 /* CustomUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229CD7A91E5E63960071CC26 /* CustomUITabBarController.swift */; };
 		22A58C881E36A5CA004CA124 /* PastWorkoutsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A58C871E36A5CA004CA124 /* PastWorkoutsVC.swift */; };
 		22A58C8A1E36DCA5004CA124 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22A58C891E36DCA5004CA124 /* GoogleService-Info.plist */; };
 		22D04A8A1E0356A0006F0AA2 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D04A891E0356A0006F0AA2 /* UIStoryboardExtension.swift */; };
@@ -71,6 +72,7 @@
 		227033391DE02755005BB93C /* StatisticsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsVC.swift; sourceTree = "<group>"; };
 		2270333B1DE028A9005BB93C /* EditWorkoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditWorkoutVC.swift; sourceTree = "<group>"; };
 		2270333F1DE029AC005BB93C /* EditExerciseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExerciseVC.swift; sourceTree = "<group>"; };
+		229CD7A91E5E63960071CC26 /* CustomUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUITabBarController.swift; sourceTree = "<group>"; };
 		22A58C871E36A5CA004CA124 /* PastWorkoutsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastWorkoutsVC.swift; sourceTree = "<group>"; };
 		22A58C891E36DCA5004CA124 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22D04A891E0356A0006F0AA2 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				227033361DE026FB005BB93C /* View */,
 				227033061DE02010005BB93C /* AppDelegate.swift */,
 				2270330C1DE02010005BB93C /* Main.storyboard */,
+				229CD7A91E5E63960071CC26 /* CustomUITabBarController.swift */,
 				2270330F1DE02010005BB93C /* Assets.xcassets */,
 				227033141DE02010005BB93C /* Info.plist */,
 				22A58C891E36DCA5004CA124 /* GoogleService-Info.plist */,
@@ -504,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				229CD7AA1E5E63960071CC26 /* CustomUITabBarController.swift in Sources */,
 				2270333A1DE02755005BB93C /* StatisticsVC.swift in Sources */,
 				227033401DE029AC005BB93C /* EditExerciseVC.swift in Sources */,
 				22A58C881E36A5CA004CA124 /* PastWorkoutsVC.swift in Sources */,

@@ -57,15 +57,10 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Edit Workout" id="39j-Wf-gBb">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="Nha-2B-SGb">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TnR-PM-Xbp">
-                                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Done"/>
-                                                <connections>
-                                                    <action selector="doneEditingWorkout:" destination="Xzq-Ty-UOI" eventType="touchUpInside" id="N2c-cV-POf"/>
-                                                </connections>
-                                            </button>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Nha-2B-SGb">
+                                            <connections>
+                                                <action selector="doneEditingWorkout:" destination="Xzq-Ty-UOI" id="eed-ae-BQk"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -103,6 +98,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                 <connections>
                                     <action selector="doneEditingDuration:" destination="Xzq-Ty-UOI" eventType="editingDidEnd" id="4LE-OB-iOw"/>
+                                    <action selector="durationChanged:" destination="Xzq-Ty-UOI" eventType="editingChanged" id="rWj-Yr-zQR"/>
                                     <outlet property="delegate" destination="Xzq-Ty-UOI" id="8RI-88-Tkw"/>
                                 </connections>
                             </textField>
@@ -253,7 +249,7 @@
                                                 <action selector="backAction:" destination="UQz-uq-b98" id="0uq-AX-JVp"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Done" id="y5h-fV-wHl">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="y5h-fV-wHl">
                                             <connections>
                                                 <action selector="doneAction:" destination="UQz-uq-b98" id="Ips-A3-a0o"/>
                                             </connections>
@@ -353,9 +349,14 @@
                                 <color key="barTintColor" red="0.97647058959999999" green="0.97254902119999997" blue="0.97254902119999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Add Exercise" id="iCn-5e-JI2">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="zUz-LV-yY7">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zUz-LV-yY7">
                                             <connections>
                                                 <action selector="cancelAddExercise:" destination="h8I-Je-KIZ" id="MXL-5K-Cy4"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="XBF-t0-KAd">
+                                            <connections>
+                                                <action selector="createNewExercise:" destination="h8I-Je-KIZ" id="Gyh-nq-Lmf"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -464,6 +465,8 @@
         <scene sceneID="Z87-3Y-6ya">
             <objects>
                 <navigationController id="QLU-6l-lVl" sceneMemberID="viewController">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FjF-v4-PEI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -503,8 +506,8 @@
         <image name="line-graph" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lto-eN-5zY"/>
-        <segue reference="CpY-HB-ucm"/>
+        <segue reference="LGr-zA-Ask"/>
+        <segue reference="j6x-EO-Ohg"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.75294117647058822" green="0.3411764705882353" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
 </document>

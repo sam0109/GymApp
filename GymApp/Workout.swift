@@ -87,6 +87,17 @@ class Workout {
         })
     }
     
+    func isCurrentWorkout(_ completion : @escaping (Bool) -> ()){
+        let id = (FIRAuth.auth()?.currentUser?.uid)!
+        Workout.usersRef.child(id).observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            if self.ref?.key == value?["CurrentWorkout"] as? String{
+                completion(true)
+            }
+            completion(false)
+        })
+    }
+    
     func update(Name: String){
         self.name = Name
         self.saveWorkoutVals()
