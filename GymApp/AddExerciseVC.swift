@@ -73,9 +73,6 @@ class AddExerciseVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     @IBAction func cancelAddExercise(_ sender: Any) {
         self.dismiss(animated: true)
     }
-    
-    @IBAction func createNewExercise(_ sender: Any) {
-    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? EditExerciseVC {
