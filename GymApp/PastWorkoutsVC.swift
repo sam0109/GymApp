@@ -13,6 +13,7 @@ class PastWorkoutsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var workoutsTable: UITableView!
     var workouts : [(Double, String, String)] = []
+    var selectedWorkout : Workout?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +49,16 @@ class PastWorkoutsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dest = tabBarController?.viewControllers?[0] as! EditWorkoutVC
+        
         Workout.newWorkout(workoutID: workouts[indexPath.row].2){ workout in
-            dest.registerNewWorkout(workout)
-            self.tabBarController?.selectedIndex = 0
+            self.selectedWorkout = workout
+            self.performSegue(withIdentifier: "edit_workout", sender: self)
         }
+        //let dest = tabBarController?.viewControllers?[0] as! EditWorkoutVC
+        //Workout.newWorkout(workoutID: workouts[indexPath.row].2){ workout in
+        //    dest.registerNewWorkout(workout)
+        //    self.tabBarController?.selectedIndex = 0
+        //}
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -62,6 +68,13 @@ class PastWorkoutsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             Workout.deleteWorkout(workouts[indexPath.row].2)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? EditWorkoutVC {
+            dest.workout = self.selectedWorkout!
+            dest.editingPastWorkout = true
         }
     }
 }

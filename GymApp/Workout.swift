@@ -75,16 +75,11 @@ class Workout {
         return (self.ref?.child("Exercises").childByAutoId())!
     }
     
-    func replaceWorkout(completion : @escaping ((Workout) -> ()))
+    func replaceCurrentWorkout(completion : @escaping ((Workout) -> ()))
     {
         let id = (FIRAuth.auth()?.currentUser?.uid)!
-        Workout.usersRef.child(id).observeSingleEvent(of: FIRDataEventType.value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            if self.ref?.key == value?["CurrentWorkout"] as? String{
-                Workout.usersRef.child(id).child("CurrentWorkout").removeValue()
-            }
-            Workout.newWorkoutForUser(completion: completion)
-        })
+        Workout.usersRef.child(id).child("CurrentWorkout").removeValue()
+        Workout.newWorkoutForUser(completion: completion)
     }
     
     func isCurrentWorkout(_ completion : @escaping (Bool) -> ()){

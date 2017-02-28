@@ -21,6 +21,7 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var workoutStartDate : TimeInterval?
     var items: [Exercise] = []
     var selectedExercise : Exercise?
+    var editingPastWorkout = false
     
     
     override func viewDidLoad() {
@@ -85,7 +86,12 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.workout?.update(Duration: Int(self.duration.text ?? "0") ?? 0)
         self.workout?.update(Date: self.workoutStartDate ?? NSDate.timeIntervalSinceReferenceDate)
         
-        workout?.replaceWorkout(){self.registerNewWorkout($0)}
+        if editingPastWorkout {
+            self.dismiss(animated: true, completion: {})
+        }
+        else {
+            workout?.replaceCurrentWorkout(){self.registerNewWorkout($0)}
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
