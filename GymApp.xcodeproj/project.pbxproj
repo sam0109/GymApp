@@ -25,6 +25,7 @@
 		229CD7AA1E5E63960071CC26 /* CustomUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229CD7A91E5E63960071CC26 /* CustomUITabBarController.swift */; };
 		22A58C881E36A5CA004CA124 /* PastWorkoutsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A58C871E36A5CA004CA124 /* PastWorkoutsVC.swift */; };
 		22A58C8A1E36DCA5004CA124 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22A58C891E36DCA5004CA124 /* GoogleService-Info.plist */; };
+		22C6CC9A1E66903100A5B86C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C6CC991E66903100A5B86C /* Launch Screen.storyboard */; };
 		22D04A8A1E0356A0006F0AA2 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D04A891E0356A0006F0AA2 /* UIStoryboardExtension.swift */; };
 		30E61A8CA7F30CE7D14E3714 /* Pods_GymAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F600C4E691668278D19BE28 /* Pods_GymAppUITests.framework */; };
 		CD253FF5B841D0337B63FE03 /* Pods_GymApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90ED881012E2ABDAFC663CE /* Pods_GymApp.framework */; };
@@ -75,6 +76,7 @@
 		229CD7A91E5E63960071CC26 /* CustomUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUITabBarController.swift; sourceTree = "<group>"; };
 		22A58C871E36A5CA004CA124 /* PastWorkoutsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastWorkoutsVC.swift; sourceTree = "<group>"; };
 		22A58C891E36DCA5004CA124 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		22C6CC991E66903100A5B86C /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		22D04A891E0356A0006F0AA2 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
 		636F3C5B50D2CC35137B9A9E /* Pods-GymAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GymAppTests/Pods-GymAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F600C4E691668278D19BE28 /* Pods_GymAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +152,7 @@
 				227033371DE02703005BB93C /* Model */,
 				227033361DE026FB005BB93C /* View */,
 				227033061DE02010005BB93C /* AppDelegate.swift */,
+				22C6CC991E66903100A5B86C /* Launch Screen.storyboard */,
 				2270330C1DE02010005BB93C /* Main.storyboard */,
 				229CD7A91E5E63960071CC26 /* CustomUITabBarController.swift */,
 				2270330F1DE02010005BB93C /* Assets.xcassets */,
@@ -344,6 +347,7 @@
 			files = (
 				22A58C8A1E36DCA5004CA124 /* GoogleService-Info.plist in Resources */,
 				227033101DE02010005BB93C /* Assets.xcassets in Resources */,
+				22C6CC9A1E66903100A5B86C /* Launch Screen.storyboard in Resources */,
 				2270330E1DE02010005BB93C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

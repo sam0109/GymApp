@@ -16,7 +16,8 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var duration: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var exercisesTable: UITableView!
-    
+    @IBOutlet weak var navigationBar: UINavigationBar!
+
     var workout : Workout?
     var workoutStartDate : TimeInterval?
     var items: [Exercise] = []
@@ -34,6 +35,10 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
         else{
             self.registerNewWorkout(self.workout!)
+        }
+        
+        if(editingPastWorkout){
+            self.navigationBar.topItem?.title = "Edit Workout";
         }
         
         //draw a line to separate exercisesTable
@@ -55,8 +60,8 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     func registerNewWorkout(_ workout : Workout){
         self.workout = workout
-        self.workout!.RegisterCallback(){exercises in
-            self.items = exercises
+        self.workout!.RegisterCallback(){
+            self.items = workout.exercises
             self.exercisesTable.reloadData()
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = DateFormatter.Style.short
@@ -129,12 +134,38 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             performSegue(withIdentifier: "edit_exercise", sender: self)
         }
     }
+    @IBAction func durationEditing(_ sender: Any) {
+        let keyboardDoneButtonView = UIToolbar.init()
+        keyboardDoneButtonView.sizeToFit()
+        let flexibleSeparator = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: #selector(EditWorkoutVC.durationDonePressed))
+        keyboardDoneButtonView.items = [flexibleSeparator, doneButton]
+        self.duration.inputAccessoryView = keyboardDoneButtonView
+    }
 
     @IBAction func textFieldEditing(_ sender: UITextField) {
         let datePickerView : UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         sender.inputView = datePickerView
         datePickerView.addTarget(self, action: #selector(EditWorkoutVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
+        
+        // Add toolbar with done button on the right
+        let keyboardDoneButtonView = UIToolbar.init()
+        keyboardDoneButtonView.sizeToFit()
+        let flexibleSeparator = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(EditWorkoutVC.startTimeDonePressed))
+        keyboardDoneButtonView.items = [flexibleSeparator, doneButton]
+        self.dateTextField.inputAccessoryView = keyboardDoneButtonView
+    }
+    
+    func startTimeDonePressed(){
+        self.doneEditingStartTime(sender : self)
+        dateTextField.resignFirstResponder()
+    }
+    
+    func durationDonePressed(){
+        self.doneEditingDuration(sender : self)
+        duration.resignFirstResponder()
     }
     
     func datePickerValueChanged(sender:UIDatePicker) {
@@ -148,12 +179,9 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBAction func doneEditingName(_ sender: Any) {
         self.workout?.update(Name: self.workoutName.text ?? "")
     }
-    
-    @IBAction func durationChanged(_ sender: Any) {
-        self.workout?.update(Duration: Int(self.workoutName.text ?? "0") ?? 0)
-    }
+
     @IBAction func doneEditingDuration(_ sender: Any) {
-        self.workout?.update(Duration: Int(self.workoutName.text ?? "0") ?? 0)
+        self.workout?.update(Duration: Int(self.duration.text ?? "0") ?? 0)
     }
     
     @IBAction func doneEditingStartTime(_ sender: Any) {

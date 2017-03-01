@@ -16,6 +16,7 @@ class Workout {
     static let exercisesRef: FIRDatabaseReference! = FIRDatabase.database().reference().child("Exercises")
     static let usersRef: FIRDatabaseReference! = FIRDatabase.database().reference().child("Users")
     private var ref: FIRDatabaseReference?
+    public private(set) var exercises : [Exercise] = []
     public private(set) var name : String?
     public private(set) var date : TimeInterval?
     public private(set) var duration : Int?
@@ -55,17 +56,21 @@ class Workout {
         })
     }
     
-    func RegisterCallback(_ completion : @escaping (([Exercise]) -> ())){
-        self.ref?.child("Exercises").observe(FIRDataEventType.value, with: { (snapshot) in  //TODO: update to observe all parts of workout
+    func RegisterCallback(_ completion : @escaping (() -> ())){
+        self.ref?.observe(FIRDataEventType.value, with: { (snapshot) in
             let dict = snapshot.value as? [String : AnyObject] ?? [:]
             var exerciseList : [Exercise] = []
-            for (key, value) in dict
+            for (key, value) in dict["Exercises"] as? [String : AnyObject] ?? [:]
             {
                 let ref = self.ref?.child("Exercises").child(key)
                 exerciseList.append(Exercise(ref: ref!, dataDict: value as! [String : AnyObject]))
             }
             exerciseList.sort(by: { $0.timestamp < $1.timestamp })
-            completion(exerciseList)
+            self.exercises = exerciseList
+            self.date = dict["Date"] as? TimeInterval
+            self.name = dict["Name"] as? String
+            self.duration = dict["Duration"] as? Int
+            completion()
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -126,7 +131,7 @@ class Workout {
             var result : [(Double, String, String)] = []
             for (key, value) in dict{
                 if key != currentWorkout {
-                    result.append(value["Date"] as! Double,value["Name"] as! String , key)
+                    result.append(value["Date"] as! Double, value["Name"] as! String , key)
                 }
             }
             result.sort(by: {$0.0 > $1.0})

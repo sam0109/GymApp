@@ -48,6 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         item.selectionStyle = .none
         item.backgroundColor = colors["item"]
         
+        let uibar = UIBarButtonItem.appearance()
+        uibar.tintColor = colors["tint"]
+        
     }
     
     @available(iOS 9.0, *)

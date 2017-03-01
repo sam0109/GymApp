@@ -16,21 +16,27 @@ import FirebaseGoogleAuthUI
 class LoginVC: UIViewController, FUIAuthDelegate {
     
     override func viewDidLoad() {
-        let authUI = FUIAuth.defaultAuthUI()
         
-        let providers: [FUIAuthProvider] = [
-            FUIGoogleAuth(),
-            //FUIFacebookAuth(),
-            //FUITwitterAuth(),
-        ]
-        authUI?.providers = providers
+        if let _ = FIRAuth.auth()?.currentUser {
+            self.performSegue(withIdentifier: "enter_app", sender: self)
+        }
+        else {
+            let authUI = FUIAuth.defaultAuthUI()
         
-        authUI?.delegate = self as FUIAuthDelegate?
+            let providers: [FUIAuthProvider] = [
+                FUIGoogleAuth(),
+                //FUIFacebookAuth(),
+                //FUITwitterAuth(),
+            ]
+            authUI?.providers = providers
         
-        super.viewDidLoad()
+            authUI?.delegate = self as FUIAuthDelegate?
         
-        let authViewController = authUI!.authViewController()
-        self.present(authViewController, animated: true, completion: nil)
+            super.viewDidLoad()
+        
+            let authViewController = authUI!.authViewController()
+            self.present(authViewController, animated: true, completion: nil)
+        }
     }
     
     func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
