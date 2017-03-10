@@ -36,17 +36,41 @@ class EditExerciseVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ExerciseCell = self.valueTable.dequeueReusableCell(withIdentifier: "cell")! as! ExerciseCell
+        let name = (exercise?.propertiesList[indexPath.row])! as String
+        let property = exercise?.properties?[name] as! [String : AnyObject]
+        let type = property["ValueType"] as! String
         
-        let name = exercise?.propertiesList[indexPath.row]
-        cell.statName.text = name
-        cell.statValue.text = String((exercise?.properties?[name!] as! NSNumber).intValue)
-        cell.closureOnChanged = { name, value in
-            if let number = Int(value!) {
-                self.exercise?.updateProperty(name!, value: number as NSNumber)
+        if type == "Int" {
+            let cell = self.valueTable.dequeueReusableCell(withIdentifier: "int_cell")! as! IntCell
+            var propertyDict = exercise?.properties?[name] as? [String : AnyObject]
+            let value = (propertyDict?["Value"])!
+            cell.statName.text = name
+            cell.statValue.text = "\(value)"
+            cell.closureOnChanged = { name, value in
+                propertyDict?["Value"] = value as AnyObject?
+                self.exercise?.updateProperty(name!, value: propertyDict as AnyObject)
             }
+            return cell
         }
-        return cell
+        else if type == "Picker" {
+            let cell = self.valueTable.dequeueReusableCell(withIdentifier: "picker_cell")! as! PickerCell
+            
+            var propertyDict = exercise?.properties?[name] as? [String : AnyObject]
+            let value = propertyDict?["Value"]
+            let pickOption = propertyDict?["Options"] as? [String]
+            
+            cell.statName.text = name
+            cell.statValue.text = value as? String
+            cell.pickOption = pickOption
+            cell.closureOnChanged = { name, value in
+                propertyDict?["Value"] = value as AnyObject?
+                self.exercise?.updateProperty(name!, value: propertyDict as AnyObject)
+            }
+            return cell
+        }
+        else{
+            fatalError("Unknown cell type: " + type)
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

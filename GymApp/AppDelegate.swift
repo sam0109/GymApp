@@ -12,12 +12,21 @@ import FirebaseAuthUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    static let exercisesRef: FIRDatabaseReference! = FIRDatabase.database().reference().child("Exercises")
+    static var currentUserRef: FIRDatabaseReference? = nil
+    static var workoutsRef: FIRDatabaseReference? = nil
+    static var workoutsListRef: FIRDatabaseReference? = nil
+
 
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FIRApp.configure()
+        AppDelegate.currentUserRef = FIRDatabase.database().reference().child("Users").child((FIRAuth.auth()?.currentUser?.uid)!)
+        AppDelegate.workoutsRef = AppDelegate.currentUserRef?.child("Workouts")
+        AppDelegate.workoutsListRef = AppDelegate.currentUserRef?.child("WorkoutsList")
+
         setTheme()
         return true
     }

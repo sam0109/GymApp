@@ -28,7 +28,7 @@ class Exercise {
         else{
             self.timestamp = input["Timestamp"] as? TimeInterval ?? NSDate.timeIntervalSinceReferenceDate
         }
-        self.properties = input["Values"] as? [String : AnyObject] ?? [:]
+        self.properties = input["Properties"] as? [String : AnyObject] ?? [:]
         for (key, _) in self.properties!{
             self.propertiesList.append(key)
         }
@@ -40,10 +40,10 @@ class Exercise {
     init(_ exerciseName : String, completion: @escaping (() -> ()) = {}) {
         self.name = exerciseName
         self.timestamp = NSDate.timeIntervalSinceReferenceDate
-        Workout.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).child("Exercises").observeSingleEvent(of: .value, with: { (snapshot) in
+        AppDelegate.currentUserRef?.child("Exercises").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(exerciseName){
                 let result = (snapshot.value as? [String : AnyObject] ?? [:])[exerciseName] as? [String : AnyObject]
-                self.properties = result?["Values"] as? [String : AnyObject] ?? [:]
+                self.properties = result?["Properties"] as? [String : AnyObject] ?? [:]
                 for (key, _) in self.properties!{
                     self.propertiesList.append(key)
                 }
@@ -51,9 +51,9 @@ class Exercise {
                 completion()
             }
             else{
-                Workout.exercisesRef.child(exerciseName).observeSingleEvent(of: .value, with: { (snapshot) in
+                AppDelegate.exercisesRef.child(exerciseName).observeSingleEvent(of: .value, with: { (snapshot) in
                     let result = snapshot.value as? [String : AnyObject] ?? [:]
-                    self.properties = result["Values"] as? [String : AnyObject] ?? [:]
+                    self.properties = result["Properties"] as? [String : AnyObject] ?? [:]
                     for (key, _) in self.properties!{
                         self.propertiesList.append(key)
                     }
@@ -72,8 +72,8 @@ class Exercise {
         if self.ref == nil {
             self.ref = workout?.AddExercise(self) ?? self.ref
         }
-        self.ref?.updateChildValues(["Name" : self.name, "Timestamp" : self.timestamp, "Values" : self.properties!])
-        Workout.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).child("Exercises").child(self.name).updateChildValues(["Name" : self.name, "Timestamp" : 0, "Values" : self.properties!])
+        self.ref?.updateChildValues(["Name" : self.name, "Timestamp" : self.timestamp, "Properties" : self.properties!])
+        AppDelegate.currentUserRef?.child("Exercises").child(self.name).updateChildValues(["Name" : self.name, "Timestamp" : 0, "Properties" : self.properties!])
         //update user default values
         //weird bug happens if you do saving in two stages. It seems to take too long so upon loading immediately after saving you only get the first stage. Just FYI.
     }
@@ -87,7 +87,7 @@ class Exercise {
     }
     
     class func getExercises(_ completion : @escaping (([String]) -> ()) = {_ in }) {
-        Workout.exercisesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        AppDelegate.exercisesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let exercisesDict = snapshot.value as? [String : AnyObject] ?? [:]
             var exercises : [String] = []
             for (key, _) in exercisesDict {
