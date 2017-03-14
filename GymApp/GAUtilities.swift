@@ -132,6 +132,22 @@ class GAUtilities {
         let view =  Bundle.main.loadNibNamed(nibName, owner: owner, options: nil)?[idx] as! UIView
         return view
     }
+    
+    class func drawLine(width: CGFloat) -> UIView{
+        let px = 1 / UIScreen.main.scale
+        let frame = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: width, height: px))
+        let line = UIView(frame: frame)
+        return line
+    }
+    
+    class func addDoneButtonForTextField(target: AnyObject, action: Selector) -> UIToolbar {
+        let keyboardDoneButtonView = UIToolbar.init()
+        keyboardDoneButtonView.sizeToFit()
+        let flexibleSeparator = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem.init(barButtonSystemItem: .done, target: target, action: action)
+        keyboardDoneButtonView.items = [flexibleSeparator, doneButton]
+        return keyboardDoneButtonView
+    }
 }
 
 extension String {

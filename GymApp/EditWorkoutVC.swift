@@ -20,10 +20,9 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
 
     var workout : Workout?
     var workoutStartDate : TimeInterval?
-    var items: [Exercise] = []
     var selectedExercise : Exercise?
     var editingPastWorkout = false
-    
+    var dateFormatter : DateFormatter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +41,13 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
         
         //draw a line to separate exercisesTable
-        let px = 1 / UIScreen.main.scale
-        let frame = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.exercisesTable.frame.size.width, height: px))
-        let line = UIView(frame: frame)
-        self.exercisesTable.tableHeaderView = line
-        line.backgroundColor = self.exercisesTable.separatorColor
+        self.exercisesTable.tableHeaderView = GAUtilities.drawLine(width: self.exercisesTable.frame.size.width)
+        self.exercisesTable.tableHeaderView?.backgroundColor = self.exercisesTable.separatorColor
+        
+        //initialize the date formatter
+        self.dateFormatter = DateFormatter()
+        self.dateFormatter?.dateStyle = DateFormatter.Style.short
+        self.dateFormatter?.timeStyle = DateFormatter.Style.short
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,12 +62,8 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func registerNewWorkout(_ workout : Workout){
         self.workout = workout
         self.workout!.RegisterCallback(){
-            self.items = workout.exercises
             self.exercisesTable.reloadData()
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = DateFormatter.Style.short
-            dateFormatter.timeStyle = DateFormatter.Style.short
-            self.dateTextField.text = dateFormatter.string(from: NSDate(timeIntervalSinceReferenceDate: (self.workout?.date)!) as Date)
+            self.dateTextField.text = self.dateFormatter?.string(from: NSDate(timeIntervalSinceReferenceDate: (self.workout?.date)!) as Date)
             self.workoutName.text = self.workout?.name ?? ""
             self.duration.text = String(self.workout?.duration ?? 0)
         }
@@ -100,7 +97,7 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count + 1;
+        return (self.workout?.exercises.count ?? 0) + 1;
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -108,39 +105,36 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
-            self.items[indexPath.row].deleteExercise()
+        if (editingStyle == UITableViewCellEditingStyle.delete
+            && self.workout?.exercises.count != indexPath.row) {
+            self.workout!.exercises[indexPath.row].deleteExercise()
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.exercisesTable.dequeueReusableCell(withIdentifier: "exercise_cell")! as UITableViewCell
         
-        if indexPath.row == items.count {
+        if indexPath.row == (self.workout?.exercises.count ?? 0) {
             cell.textLabel?.text = "Add Exercise"
         }
         else{
-            cell.textLabel?.text = self.items[indexPath.row].name
+            cell.textLabel?.text = self.workout!.exercises[indexPath.row].name
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == items.count {
+        if indexPath.row == self.workout!.exercises.count {
             performSegue(withIdentifier: "add_exercise", sender: self)
         }
         else{
-            self.selectedExercise = self.items[indexPath.row]
+            self.selectedExercise = self.workout!.exercises[indexPath.row]
             performSegue(withIdentifier: "edit_exercise", sender: self)
         }
     }
+    
     @IBAction func durationEditing(_ sender: Any) {
-        let keyboardDoneButtonView = UIToolbar.init()
-        keyboardDoneButtonView.sizeToFit()
-        let flexibleSeparator = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: #selector(EditWorkoutVC.durationDonePressed))
-        keyboardDoneButtonView.items = [flexibleSeparator, doneButton]
-        self.duration.inputAccessoryView = keyboardDoneButtonView
+        self.duration.inputAccessoryView = GAUtilities.addDoneButtonForTextField(target: self, action: #selector(durationDonePressed))
     }
 
     @IBAction func textFieldEditing(_ sender: UITextField) {
@@ -149,13 +143,7 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         sender.inputView = datePickerView
         datePickerView.addTarget(self, action: #selector(EditWorkoutVC.datePickerValueChanged), for: UIControlEvents.valueChanged)
         
-        // Add toolbar with done button on the right
-        let keyboardDoneButtonView = UIToolbar.init()
-        keyboardDoneButtonView.sizeToFit()
-        let flexibleSeparator = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(EditWorkoutVC.startTimeDonePressed))
-        keyboardDoneButtonView.items = [flexibleSeparator, doneButton]
-        self.dateTextField.inputAccessoryView = keyboardDoneButtonView
+        self.dateTextField.inputAccessoryView = GAUtilities.addDoneButtonForTextField(target: self, action: #selector(startTimeDonePressed))
     }
     
     func startTimeDonePressed(){
@@ -169,10 +157,7 @@ class EditWorkoutVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func datePickerValueChanged(sender:UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        dateFormatter.timeStyle = DateFormatter.Style.short
-        dateTextField.text = dateFormatter.string(from: sender.date)
+        dateTextField.text = self.dateFormatter?.string(from: sender.date)
         self.workoutStartDate = sender.date.timeIntervalSinceReferenceDate
     }
     
